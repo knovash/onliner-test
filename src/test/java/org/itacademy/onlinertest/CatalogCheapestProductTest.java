@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 @Log4j2
 @Listeners
-public class OnlinerCheapestProductTest extends BaseTest {
+public class CatalogCheapestProductTest extends BaseTest {
 
     CheapestSteps cheapestSteps = new CheapestSteps();
 
