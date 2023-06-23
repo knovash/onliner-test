@@ -17,14 +17,14 @@ public class CheapestSteps {
 
     OnlinerPage onlinerPage = new OnlinerPage();
 
-    @Step("input Search Value")
-    public void inputSearchValue(String text) {
-        log.info("input Search Value: " + text);
+    @Step("input Value In SearchField")
+    public void inputValueInSearchField(String text) {
+        log.info("input Value In SearchField: " + text);
         WaitUtils.waitForVisibility(onlinerPage.fastSearchInput, 60);
         onlinerPage.fastSearchInput.setValue(text);
     }
 
-    @Step("switch To Frame")
+    @Step("switch To Results Frame")
     public void switchToResultsFrame() {
         log.info("switch To Results Frame");
         SelenideElement frame = onlinerPage.frame;
@@ -32,8 +32,9 @@ public class CheapestSteps {
         getWebDriver().switchTo().frame(frame);
     }
 
-    @Step("get Cheapest Product Element")
+    @Step("iterate Result Elements and get Cheapest Product Element")
     public SelenideElement getCheapestProductElement() {
+        log.info("iterate Resuly Elements and get Cheapest Product Element");
 
         Comparator<SelenideElement> priceComparator = new Comparator<SelenideElement>() {
             @Override
@@ -42,7 +43,6 @@ public class CheapestSteps {
             }
         };
 
-        log.info("get Cheapest Product Element");
         WaitUtils.waitForVisibility(onlinerPage.searchResults.get(0), 60);
         log.info("RESULT LIST SIZE: " + onlinerPage.searchResults.size());
         SelenideElement result = onlinerPage.searchResults
@@ -53,25 +53,25 @@ public class CheapestSteps {
         return result;
     }
 
-    @Step("get Cheapest Title Text")
+    @Step("get Cheapest Element Title Text")
     public String getCheapestTitleText(SelenideElement minPriceElement) {
-        log.info("get Cheapest Title Text");
+        log.info("get Cheapest Element Title Text");
         String cheapestTitle = minPriceElement.$(By.xpath(".//div[@class='product__title']")).getText();
         log.info("CHEAPEST TITLE: " + cheapestTitle);
         return cheapestTitle;
     }
 
-    @Step("get Cheapest Price Text")
+    @Step("get Cheapest Element Price Text")
     public String getCheapestPriceText(SelenideElement minPriceElement) {
-        log.info("get Cheapest Price Text");
+        log.info("get Cheapest Element Price Text");
         String cheapestPrice = minPriceElement.$(By.xpath(".//div[@class='product__price']//span")).getText();
         log.info("CHEAPEST PRICE: " + cheapestPrice);
         return cheapestPrice;
     }
 
-    @Step("go To Product Page")
+    @Step("go To Cheapest Element Product Page")
     public void goToProductPage(SelenideElement minPriceElement) {
-        log.info("go To Product Page");
+        log.info("go To Cheapest Element Product Page");
         SelenideElement link = minPriceElement.$(By.xpath(".//*[@class='product__title-link']"));
         WaitUtils.waitForVisibility(link, 60);
         link.click();
@@ -81,9 +81,9 @@ public class CheapestSteps {
         log.info("PAGE TITLE: " + productTitle.getText());
     }
 
-    @Step("add Product To Basket")
+    @Step("add Cheapest Product To Basket")
     public void addProductToBasket() {
-        log.info("add Product To Basket");
+        log.info("add Cheapest Product To Basket");
         SelenideElement addToBasket = onlinerPage.buttonToBasket;
         WaitUtils.waitForVisibility(addToBasket, 60);
         log.info("button add To Basket is Displayed: " + addToBasket.isDisplayed());
@@ -99,15 +99,15 @@ public class CheapestSteps {
         goToBasket.click();
     }
 
-    @Step("get Basket Product Title")
+    @Step("get In Basket Product Title")
     public String getInBasketProductTitleText() {
-        log.info("get Basket Product Title");
+        log.info("get In Basket Product Title");
         return onlinerPage.inBasketItems.get(0).$(By.xpath(".//a[contains(@class,'cart-form__link_base-alter')]")).getText();
     }
 
-    @Step("get Basket Product Price")
+    @Step("get Basket In Product Price")
     public String getInBasketProductPriceText() {
-        log.info("get Basket Product Price");
+        log.info("get In Basket Product Price");
         return onlinerPage.inBasketItems.get(0).$(By.xpath(".//div[contains(@class,'cart-form__offers-part_price_specific')]")).getText();
     }
 }

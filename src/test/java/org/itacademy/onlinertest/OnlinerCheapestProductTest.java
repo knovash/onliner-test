@@ -22,7 +22,7 @@ public class OnlinerCheapestProductTest extends BaseTest {
             dataProviderClass = DataProviderCatalogItems.class)
     public void cheapestProductTest(CatalogItem item) {
         log.info("TEST CHEAPEST START");
-        cheapestSteps.inputSearchValue(item.getTitle());
+        cheapestSteps.inputValueInSearchField(item.getTitle());
         cheapestSteps.switchToResultsFrame();
         SelenideElement cheapestProductElement = cheapestSteps.getCheapestProductElement();
         String cheapestProductTitle = cheapestSteps.getCheapestTitleText(cheapestProductElement);
