@@ -18,10 +18,10 @@ public class CheapestSteps {
     CatalogPage catalogPage = new CatalogPage();
 
     @Step("input Value In SearchField")
-    public void inputValueInSearchField(String text) {
-        log.info("input Value In SearchField: " + text);
+    public void inputValueInSearchField(String value) {
+        log.info("input Value In SearchField: " + value);
         WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 60);
-        catalogPage.fastSearchInput.setValue(text);
+        catalogPage.fastSearchInput.setValue(value);
     }
 
     @Step("switch To Results Frame")
@@ -34,7 +34,7 @@ public class CheapestSteps {
 
     @Step("iterate Result Elements and get Cheapest Product Element")
     public SelenideElement getCheapestProductElement() {
-        log.info("iterate Resuly Elements and get Cheapest Product Element");
+        log.info("iterate Result Elements and get Cheapest Product Element");
 
         Comparator<SelenideElement> priceComparator = new Comparator<SelenideElement>() {
             @Override
@@ -72,7 +72,7 @@ public class CheapestSteps {
     @Step("go To Cheapest Element Product Page")
     public void goToProductPage(SelenideElement minPriceElement) {
         log.info("go To Cheapest Element Product Page");
-        SelenideElement link = minPriceElement.$(By.xpath(".//*[@class='product__title-link']"));
+        SelenideElement link = minPriceElement.$(By.xpath(".//a[@class='product__title-link']"));
         WaitUtils.waitForVisibility(link, 60);
         link.click();
         log.info("wait for product page title...");

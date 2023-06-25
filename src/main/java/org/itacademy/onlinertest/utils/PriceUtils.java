@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class PriceUtils {
 
     public static Double getDouble(SelenideElement element) {
-        String priceText = element.$(By.xpath(".//*[@class='product__price']//span")).getText();
+        String priceText = element.$(By.xpath(".//div[@class='product__price']//span")).getText();
         priceText = priceText
                 .replace(" р.", "")
                 .replace(" ", "")

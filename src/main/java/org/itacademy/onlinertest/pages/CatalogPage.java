@@ -15,11 +15,11 @@ public class CatalogPage {
 
     public ElementsCollection searchResults = $$(By.xpath("//div[@class='result__item result__item_product']"));
 
-    public SelenideElement productTitle = $(By.xpath("//*[@class='catalog-masthead__title js-nav-header']"));
+    public SelenideElement productTitle = $(By.xpath("//h1[@class='catalog-masthead__title js-nav-header']"));
 
-    public SelenideElement buttonToBasket = $(By.xpath("//*[contains(text(), 'В корзину')]"));
+    public SelenideElement buttonToBasket = $(By.xpath("//a[contains(text(), 'В корзину')]"));
 
-    public SelenideElement buttonGoToBasket = $(By.xpath("//*[contains(text(), 'Перейти в корзину')]"));
+    public SelenideElement buttonGoToBasket = $(By.xpath("//a[contains(text(), 'Перейти в корзину')]"));
 
     public ElementsCollection inBasketItems = $$(By.xpath("//div[@class='cart-form__offers-unit cart-form__offers-unit_primary']"));
 }
