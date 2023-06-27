@@ -18,7 +18,7 @@ public class Config {
     public static void getProperties() {
         log.info("CONFIG GET PROPERTIES");
         Properties properties = new Properties();
-        URL resource = Create.class.getClassLoader().getResource("config.properties");
+        URL resource = Config.class.getClassLoader().getResource("config.properties");
         File file = new File(Objects.requireNonNull(resource).getFile());
         try {
             FileInputStream in = new FileInputStream(file);

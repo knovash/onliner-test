@@ -16,13 +16,4 @@ public class WaitUtils {
         new WebDriverWait(getWebDriver(), Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.visibilityOf(element));
     }
-
-    public static void waitSeconds(int time) {
-        log.info("WAIT sec: " + time);
-        try {
-            Thread.sleep(time * 1000);
-        } catch (InterruptedException e) {
-
-        }
-    }
 }

@@ -13,7 +13,7 @@ import java.util.Objects;
 public class JsonUtil {
 
     public static <T> T getObjectFromFile(String fileName, Class<T> clazz) {
-        URL resourceItems = Create.class.getClassLoader().getResource("data/" + fileName);
+        URL resourceItems = JsonUtil.class.getClassLoader().getResource("data/" + fileName);
         File fileItems = new File(Objects.requireNonNull(resourceItems).getFile());
         ObjectMapper objectMapper = new ObjectMapper();
         T object;

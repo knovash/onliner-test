@@ -7,21 +7,16 @@ import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.utils.Config;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 
 import static com.codeborne.selenide.Selenide.open;
 
 @Log4j2
 public class BaseTest {
 
-    @BeforeTest
-    public void beforeTest() {
-        log.info("BEFORE TEST config get properties");
-        Config.getProperties();
-    }
-
     @BeforeClass
     public void beforeClass() {
+        log.info("BEFORE CLASS config get properties");
+        Config.getProperties();
         log.info("BEFORE CLASS add allure listener");
         SelenideLogger.addListener("allure", new AllureSelenide()
                 .savePageSource(true)
