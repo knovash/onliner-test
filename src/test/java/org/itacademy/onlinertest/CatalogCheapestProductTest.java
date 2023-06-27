@@ -25,15 +25,16 @@ public class CatalogCheapestProductTest extends BaseTest {
         cheapestSteps.inputValueInSearchField(item.getTitle());
         cheapestSteps.switchToResultsFrame();
         SelenideElement cheapestProductElement = cheapestSteps.getCheapestProductElement();
-        String cheapestProductTitle = cheapestSteps.getCheapestTitleText(cheapestProductElement);
-        String cheapestProductPrice = cheapestSteps.getCheapestPriceText(cheapestProductElement);
+        CatalogItem cheapestProduct = new CatalogItem();
+        cheapestProduct.setTitle(cheapestSteps.getCheapestTitleText(cheapestProductElement));
+        cheapestProduct.setPrice(cheapestSteps.getCheapestPriceText(cheapestProductElement));
         cheapestSteps.goToProductPage(cheapestProductElement);
         cheapestSteps.addProductToBasket();
         cheapestSteps.goToBasketPage();
-        String inBasketProductTitle = cheapestSteps.getInBasketProductTitleText();
-        String inBasketProductPrice = cheapestSteps.getInBasketProductPriceText();
-        log.info("PRICE COMPARE " + cheapestProductPrice + " = " + inBasketProductPrice + "  " + cheapestProductPrice.contains(inBasketProductPrice));
-        log.info("TITLE COMPARE " + cheapestProductTitle + " = " + inBasketProductTitle + "  " + cheapestProductTitle.contains(inBasketProductTitle));
-        Assert.assertTrue(cheapestProductPrice.contains(inBasketProductPrice) && cheapestProductTitle.contains(inBasketProductTitle));
+        CatalogItem inBasketProduct = new CatalogItem();
+        inBasketProduct.setTitle(cheapestSteps.getInBasketProductTitleText());
+        inBasketProduct.setPrice(cheapestSteps.getInBasketProductPriceText());
+
+        Assert.assertTrue(cheapestProduct.equals(inBasketProduct));
     }
 }
