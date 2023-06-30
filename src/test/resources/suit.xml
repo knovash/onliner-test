@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite 1">
-    <test name="Test 1">
+
+    <listeners>
+        <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
+    </listeners>
+
+    <test name="Cheapest product">
         <classes>
             <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>
         </classes>

@@ -1,6 +1,10 @@
 {
   "items" : [ {
-    "title" : "iphone 12",
+    "name" : "ATLANT СМА 40М",
     "price" : "100"
-  } ]
+  },
+    {
+      "name" : "iphone 12",
+      "price" : "100"
+    }]
 }

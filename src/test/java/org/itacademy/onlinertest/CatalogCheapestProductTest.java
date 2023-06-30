@@ -1,6 +1,6 @@
 package org.itacademy.onlinertest;
 
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.testng.ScreenShooter;
 import io.qameta.allure.Description;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.CatalogItem;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @Listeners
 public class CatalogCheapestProductTest extends BaseTest {
 
-    CheapestSteps cheapestSteps = new CheapestSteps();
+    private CheapestSteps cheapestSteps = new CheapestSteps();
 
     @Description("Find cheapest product and add to basket")
     @Test(testName = "Cheapest product",
@@ -22,19 +22,25 @@ public class CatalogCheapestProductTest extends BaseTest {
             dataProviderClass = DataProviderCatalogItems.class)
     public void cheapestProductTest(CatalogItem item) {
         log.info("TEST CHEAPEST START");
-        cheapestSteps.inputValueInSearchField(item.getTitle());
+        ScreenShooter.captureSuccessfulTests = true;
+        cheapestSteps.inputSearchValue(item.getName());
         cheapestSteps.switchToResultsFrame();
-        SelenideElement cheapestProductElement = cheapestSteps.getCheapestProductElement();
-        CatalogItem cheapestProduct = new CatalogItem();
-        cheapestProduct.setTitle(cheapestSteps.getCheapestTitleText(cheapestProductElement));
-        cheapestProduct.setPrice(cheapestSteps.getCheapestPriceText(cheapestProductElement));
-        cheapestSteps.goToProductPage(cheapestProductElement);
+        cheapestSteps.getSearchResults();
+        cheapestSteps.getCheapestProductElement();
+        cheapestSteps.setCheapestProductObject();
+        cheapestSteps.goToProductPage();
+        cheapestSteps.sortProductsOnPage();
         cheapestSteps.addProductToBasket();
         cheapestSteps.goToBasketPage();
-        CatalogItem inBasketProduct = new CatalogItem();
-        inBasketProduct.setTitle(cheapestSteps.getInBasketProductTitleText());
-        inBasketProduct.setPrice(cheapestSteps.getInBasketProductPriceText());
+        cheapestSteps.goToInBasketProductPage();
+        cheapestSteps.setInBasketProductObject();
+        cheapestSteps.writeToFileCheapestProductObject();
+        log.info(cheapestSteps.cheapestProduct);
+        log.info(cheapestSteps.inBasketProduct);
 
-        Assert.assertTrue(cheapestProduct.equals(inBasketProduct));
+        Assert.assertEquals(cheapestSteps.cheapestProduct,cheapestSteps.inBasketProduct);
+
+        /** used for debug */
+//        WaitUtils.waitForVisibility(3);
     }
 }
