@@ -26,7 +26,7 @@ public class CatalogCheapestProductTest extends BaseTest {
         cheapestSteps.inputSearchValue(item.getName());
         cheapestSteps.switchToResultsFrame();
         cheapestSteps.getSearchResults();
-        cheapestSteps.getCheapestProductElement();
+        cheapestSteps.defineCheapestProductElement();
         cheapestSteps.setCheapestProductObject();
         cheapestSteps.goToProductPage();
         cheapestSteps.sortProductsOnPage();

@@ -20,37 +20,37 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @Log4j2
 public class CheapestSteps {
 
-    CatalogPage catalogPage = new CatalogPage();
+    private CatalogPage catalogPage = new CatalogPage();
     public ElementsCollection searchResultsElements;
     public SelenideElement cheapestProductElement;
     public CatalogItem cheapestProduct = new CatalogItem();
     public CatalogItem inBasketProduct = new CatalogItem();
 
-    @Step("input Search Value")
+    @Step("Input search value")
     public void inputSearchValue(String value) {
-        log.info("input Search Value: " + value);
+        log.info("Input search value: " + value);
         WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 120);
         catalogPage.fastSearchInput.setValue(value);
     }
 
-    @Step("switch To Results Frame")
+    @Step("Switch to results frame")
     public void switchToResultsFrame() {
-        log.info("switch To Results Frame");
+        log.info("switch to results frame");
         SelenideElement frame = catalogPage.frame;
         WaitUtils.waitForVisibility(frame);
         getWebDriver().switchTo().frame(frame);
     }
 
-    @Step("get Search Results")
+    @Step("get search results")
     public void getSearchResults() {
-        log.info("get Search Results");
+        log.info("get search results");
         searchResultsElements = catalogPage.searchResults;
         WaitUtils.waitForVisibility(searchResultsElements.get(0));
     }
 
-    @Step("iterate In Stream Result Elements and get Cheapest Product Element")
-    public void getCheapestProductElement() {
-        log.info("iterate In Stream Result Elements and get Cheapest Product Element");
+    @Step("iterate in stream result elements and get cheapest product element")
+    public void defineCheapestProductElement() {
+        log.info("iterate in stream result elements and get cheapest product element");
 
         Comparator<SelenideElement> priceComparator = new Comparator<SelenideElement>() {
             @Override
@@ -67,21 +67,18 @@ public class CheapestSteps {
         log.info("cheapest price is: " + ElementUtils.getDouble(cheapestProductElement));
     }
 
-    @Step("set Cheapest Product Object")
+    @Step("set cheapest product object")
     public void setCheapestProductObject() {
-        log.info("set Cheapest Product Object");
+        log.info("set cheapest product object");
         String title = cheapestProductElement.$(By.xpath(catalogPage.cheapestProductTitle)).getText();
         String price = cheapestProductElement.$(By.xpath(catalogPage.cheapestProductPrice)).getText();
-        /** replace used to ruin the test */
-//        String title = cheapestProductElement.$(By.xpath(catalogPage.cheapestProductTitle)).getText().replace(" ","");
-//        String price = cheapestProductElement.$(By.xpath(catalogPage.cheapestProductPrice)).getText().replace(" ","");
         cheapestProduct.setName(title);
         cheapestProduct.setPrice(price);
     }
 
-    @Step("set In Basket Product Object")
+    @Step("set in basket product object")
     public void setInBasketProductObject() {
-        log.info("set In Basket Product Object");
+        log.info("set in basket product object");
         WaitUtils.waitForVisibility(catalogPage.inBasketProductTitle);
         String title = catalogPage.inBasketProductTitle.getText();
         String price = catalogPage.inBasketProductPrice.getText();
@@ -89,65 +86,56 @@ public class CheapestSteps {
         inBasketProduct.setPrice(price);
     }
 
-    @Step("go To Cheapest Element Product Page")
+    @Step("go to product page")
     public void goToProductPage() {
-        log.info("go To Cheapest Element Product Page");
+        log.info("go to product page");
         SelenideElement link = cheapestProductElement.$(By.xpath(catalogPage.linkToProductPage));
         WaitUtils.waitForVisibility(link);
         link.click();
-        log.info("wait for product page title...");
-        SelenideElement productTitle = catalogPage.productTitle;
-        WaitUtils.waitForVisibility(productTitle);
-        log.info("PAGE TITLE: " + productTitle.getText());
     }
 
-    @Step("sort Products On Page")
+    @Step("sort products on page")
     public void sortProductsOnPage() {
-        log.info("sort Products On Page");
+        log.info("sort products on page");
         SelenideElement offers = catalogPage.offers;
         WaitUtils.waitForVisibility(offers);
-        //TODO Рома, вопрос, если делать поиск по всей странице то никак ненаходит селектор,
-        // я тогда нахожу див в котором все предложения товаров запихиваю его в элемент
-        // и уже поиском в этом элементе могу найти селектор. как так? это норм?
         SelenideElement selector = offers.$(By.xpath(catalogPage.selector));
         actions().scrollToElement(selector);
         selector.selectOptionContainingText("возраст");
         selector.click();
-        //TODO Рома, вопрос, как это сделать лучше?
-        // непонятно зачем но надо, после клика, но без этого не запускается сортировка
         selector.selectOption(2);
-        log.info("send keys ENTER to sort selector");
+        log.info("send keys e nTER to sort selector");
         selector.sendKeys(Keys.ENTER);
     }
 
-    @Step("add Product To Basket")
+    @Step("add product to basket")
     public void addProductToBasket() {
-        log.info("add Product To Basket");
+        log.info("add product to basket");
         SelenideElement offers = catalogPage.offers;
         WaitUtils.waitForVisibility(offers);
         SelenideElement button = offers.$(By.xpath(catalogPage.buttonAddToBasket));
         button.click();
     }
 
-    @Step("go To Basket Page")
+    @Step("go to basket page")
     public void goToBasketPage() {
-        log.info("go To Basket Page");
+        log.info("go to basket page");
         SelenideElement goToBasket = catalogPage.buttonGoToBasket;
         WaitUtils.waitForVisibility(goToBasket);
         goToBasket.click();
     }
 
-    @Step("goToInBasketProductPage")
+    @Step("go to in basket product page")
     public void goToInBasketProductPage() {
-        log.info("goToInBasketProductPage");
+        log.info("go to in basket product page");
         SelenideElement title = catalogPage.inBasketProduct;
         WaitUtils.waitForVisibility(title);
         title.click();
     }
 
-    @Step("writeToFileCheapestProductObject")
+    @Step("write to file cheapest product object")
     public void writeToFileCheapestProductObject() {
-        log.info("writeToFileCheapestProductObject");
+        log.info("write to file cheapest product object");
         //TODO просто потестировать запись объектов в файл
         JsonUtil.setObjectToFile(cheapestProduct, "result.json");
     }
