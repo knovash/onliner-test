@@ -27,7 +27,7 @@ public class JsonUtil {
     }
 
     public static void setObjectToFile(Object object, String fileName) {
-        File file = new File("src/main/resources/data/" + fileName);
+        File file = new File("src/main/resources/result/" + fileName);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
