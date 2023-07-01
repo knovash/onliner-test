@@ -9,3 +9,5 @@ allure-results
 *.jar
 *.iml
 *.sh
+/src/main/resources/result/
+result.json

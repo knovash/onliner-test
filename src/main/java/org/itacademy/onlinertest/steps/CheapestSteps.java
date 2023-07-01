@@ -111,6 +111,7 @@ public class CheapestSteps {
     @Step("add product to basket")
     public void addProductToBasket() {
         log.info("add product to basket");
+        WaitUtils.waitForVisibility(1);
         SelenideElement offers = catalogPage.offers;
         WaitUtils.waitForVisibility(offers);
         SelenideElement button = offers.$(By.xpath(catalogPage.buttonAddToBasket));

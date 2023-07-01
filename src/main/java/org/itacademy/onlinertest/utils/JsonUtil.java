@@ -29,11 +29,10 @@ public class JsonUtil {
     public static void setObjectToFile(Object object, String fileName) {
         File file = new File("src/main/resources/data/" + fileName);
         try {
+            file.createNewFile();
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
             objectWriter.writeValue(file, object);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
