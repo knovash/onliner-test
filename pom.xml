@@ -106,9 +106,16 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin-version}</version>
                 <configuration>
+
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/suit.xml</suiteXmlFile>
+                        <!-- pass testng.xml files as argument from command line -->
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
+
+
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>src/test/resources/suit.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
