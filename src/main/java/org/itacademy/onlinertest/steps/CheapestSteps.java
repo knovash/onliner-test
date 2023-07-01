@@ -1,113 +1,142 @@
 package org.itacademy.onlinertest.steps;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import org.itacademy.onlinertest.models.CatalogItem;
 import org.itacademy.onlinertest.pages.CatalogPage;
-import org.itacademy.onlinertest.utils.PriceUtils;
+import org.itacademy.onlinertest.utils.ElementUtils;
+import org.itacademy.onlinertest.utils.JsonUtil;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import java.util.Comparator;
 
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Log4j2
 public class CheapestSteps {
 
-    CatalogPage catalogPage = new CatalogPage();
+    private CatalogPage catalogPage = new CatalogPage();
+    public ElementsCollection searchResultsElements;
+    public SelenideElement cheapestProductElement;
+    public CatalogItem cheapestProduct = new CatalogItem();
+    public CatalogItem inBasketProduct = new CatalogItem();
 
-    @Step("input Value In SearchField")
-    public void inputValueInSearchField(String value) {
-        log.info("input Value In SearchField: " + value);
-        WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 60);
+    @Step("Input search value")
+    public void inputSearchValue(String value) {
+        log.info("Input search value: " + value);
+        WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 120);
         catalogPage.fastSearchInput.setValue(value);
     }
 
-    @Step("switch To Results Frame")
+    @Step("Switch to results frame")
     public void switchToResultsFrame() {
-        log.info("switch To Results Frame");
+        log.info("switch to results frame");
         SelenideElement frame = catalogPage.frame;
-        WaitUtils.waitForVisibility(frame, 60);
+        WaitUtils.waitForVisibility(frame);
         getWebDriver().switchTo().frame(frame);
     }
 
-    @Step("iterate Result Elements and get Cheapest Product Element")
-    public SelenideElement getCheapestProductElement() {
-        log.info("iterate Result Elements and get Cheapest Product Element");
+    @Step("get search results")
+    public void getSearchResults() {
+        log.info("get search results");
+        searchResultsElements = catalogPage.searchResults;
+        WaitUtils.waitForVisibility(searchResultsElements.get(0));
+    }
+
+    @Step("iterate in stream result elements and get cheapest product element")
+    public void defineCheapestProductElement() {
+        log.info("iterate in stream result elements and get cheapest product element");
 
         Comparator<SelenideElement> priceComparator = new Comparator<SelenideElement>() {
             @Override
             public int compare(SelenideElement element1, SelenideElement element2) {
-                return PriceUtils.getDouble(element1).compareTo(PriceUtils.getDouble(element2));
+                return ElementUtils.getDouble(element1).compareTo(ElementUtils.getDouble(element2));
             }
         };
 
-        WaitUtils.waitForVisibility(catalogPage.searchResults.get(0), 60);
-        log.info("RESULT LIST SIZE: " + catalogPage.searchResults.size());
-        SelenideElement result = catalogPage.searchResults
-                .stream()
-                .peek(element -> log.info("PRICE: " + PriceUtils.getDouble(element)))
+        cheapestProductElement = searchResultsElements.stream()
+                .peek(element -> log.info("PRICE: " + ElementUtils.getDouble(element)))
+                .filter(element -> ElementUtils.getDouble(element) > 0)
                 .min(priceComparator)
                 .get();
-        return result;
+        log.info("cheapest price is: " + ElementUtils.getDouble(cheapestProductElement));
     }
 
-    @Step("get Cheapest Element Title Text")
-    public String getCheapestTitleText(SelenideElement minPriceElement) {
-        log.info("get Cheapest Element Title Text");
-        String cheapestTitle = minPriceElement.$(By.xpath(".//div[@class='product__title']")).getText();
-        log.info("CHEAPEST TITLE: " + cheapestTitle);
-        return cheapestTitle;
+    @Step("set cheapest product object")
+    public void setCheapestProductObject() {
+        log.info("set cheapest product object");
+        String title = cheapestProductElement.$(By.xpath(catalogPage.cheapestProductTitle)).getText();
+        String price = cheapestProductElement.$(By.xpath(catalogPage.cheapestProductPrice)).getText();
+        cheapestProduct.setName(title);
+        cheapestProduct.setPrice(price);
     }
 
-    @Step("get Cheapest Element Price Text")
-    public String getCheapestPriceText(SelenideElement minPriceElement) {
-        log.info("get Cheapest Element Price Text");
-        String cheapestPrice = minPriceElement.$(By.xpath(".//div[@class='product__price']//span")).getText();
-        log.info("CHEAPEST PRICE: " + cheapestPrice);
-        return cheapestPrice;
+    @Step("set in basket product object")
+    public void setInBasketProductObject() {
+        log.info("set in basket product object");
+        WaitUtils.waitForVisibility(catalogPage.inBasketProductTitle);
+        String title = catalogPage.inBasketProductTitle.getText();
+        String price = catalogPage.inBasketProductPrice.getText();
+        inBasketProduct.setName(title);
+        inBasketProduct.setPrice(price);
     }
 
-    @Step("go To Cheapest Element Product Page")
-    public void goToProductPage(SelenideElement minPriceElement) {
-        log.info("go To Cheapest Element Product Page");
-        SelenideElement link = minPriceElement.$(By.xpath(".//a[@class='product__title-link']"));
-        WaitUtils.waitForVisibility(link, 60);
+    @Step("go to product page")
+    public void goToProductPage() {
+        log.info("go to product page");
+        SelenideElement link = cheapestProductElement.$(By.xpath(catalogPage.linkToProductPage));
+        WaitUtils.waitForVisibility(link);
         link.click();
-        log.info("wait for product page title...");
-        SelenideElement productTitle = catalogPage.productTitle;
-        WaitUtils.waitForVisibility(productTitle, 60);
-        log.info("PAGE TITLE: " + productTitle.getText());
     }
 
-    @Step("add Cheapest Product To Basket")
+    @Step("sort products on page")
+    public void sortProductsOnPage() {
+        log.info("sort products on page");
+        SelenideElement offers = catalogPage.offers;
+        WaitUtils.waitForVisibility(offers);
+        SelenideElement selector = offers.$(By.xpath(catalogPage.selector));
+        actions().scrollToElement(selector);
+        selector.selectOptionContainingText("возраст");
+        selector.click();
+        selector.selectOption(2);
+        log.info("send keys e nTER to sort selector");
+        selector.sendKeys(Keys.ENTER);
+    }
+
+    @Step("add product to basket")
     public void addProductToBasket() {
-        log.info("add Cheapest Product To Basket");
-        SelenideElement addToBasket = catalogPage.buttonToBasket;
-        WaitUtils.waitForVisibility(addToBasket, 60);
-        log.info("button add To Basket is Displayed: " + addToBasket.isDisplayed());
-        addToBasket.click();
+        log.info("add product to basket");
+        SelenideElement offers = catalogPage.offers;
+        WaitUtils.waitForVisibility(offers);
+        SelenideElement button = offers.$(By.xpath(catalogPage.buttonAddToBasket));
+        button.click();
     }
 
-    @Step("go To Basket Page")
+    @Step("go to basket page")
     public void goToBasketPage() {
-        log.info("go To Basket Page");
+        log.info("go to basket page");
         SelenideElement goToBasket = catalogPage.buttonGoToBasket;
-        WaitUtils.waitForVisibility(goToBasket, 60);
-        log.info("button go To Basket is Displayed: " + goToBasket.isDisplayed());
+        WaitUtils.waitForVisibility(goToBasket);
         goToBasket.click();
     }
 
-    @Step("get In Basket Product Title")
-    public String getInBasketProductTitleText() {
-        log.info("get In Basket Product Title");
-        return catalogPage.inBasketItems.get(0).$(By.xpath(".//a[contains(@class,'cart-form__link_base-alter')]")).getText();
+    @Step("go to in basket product page")
+    public void goToInBasketProductPage() {
+        log.info("go to in basket product page");
+        SelenideElement title = catalogPage.inBasketProduct;
+        WaitUtils.waitForVisibility(title);
+        title.click();
     }
 
-    @Step("get Basket In Product Price")
-    public String getInBasketProductPriceText() {
-        log.info("get In Basket Product Price");
-        return catalogPage.inBasketItems.get(0).$(By.xpath(".//div[contains(@class,'cart-form__offers-part_price_specific')]")).getText();
+    @Step("write to file cheapest product object")
+    public void writeToFileCheapestProductObject() {
+        log.info("write to file cheapest product object");
+        //TODO просто потестировать запись объектов в файл
+        JsonUtil.setObjectToFile(cheapestProduct, "result.json");
     }
 }

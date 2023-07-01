@@ -11,5 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 public class Catalog {
 
-    List<CatalogItem> items;
+    public List<CatalogItem> items;
 }

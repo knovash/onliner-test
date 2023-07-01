@@ -13,7 +13,24 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class WaitUtils {
 
     public static void waitForVisibility(SelenideElement element, int seconds) {
+        log.info("wait For Element Visibility sec: " + seconds + " " + element);
         new WebDriverWait(getWebDriver(), Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitForVisibility(SelenideElement element) {
+        log.info("wait For Element Visibility sec: 30" + " " + element);
+        new WebDriverWait(getWebDriver(), Duration.ofSeconds(90))
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+
+    /** used for debug */
+    public static void waitForVisibility(int seconds) {
+        log.info("wait sec: " + seconds);
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
