@@ -86,5 +86,4 @@ public class BaseTest {
     public void tearDown() {
         Selenide.clearBrowserCookies();
     }
-
 }

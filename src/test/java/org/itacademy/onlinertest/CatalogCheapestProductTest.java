@@ -35,8 +35,8 @@ public class CatalogCheapestProductTest extends BaseTest {
         cheapestSteps.goToInBasketProductPage();
         cheapestSteps.setInBasketProductObject();
         cheapestSteps.writeToFileCheapestProductObject();
-        log.info(cheapestSteps.cheapestProduct);
-        log.info(cheapestSteps.inBasketProduct);
+        log.info("Cheapest product: " + cheapestSteps.cheapestProduct);
+        log.info("In basket product: " + cheapestSteps.inBasketProduct);
 
         Assert.assertEquals(cheapestSteps.cheapestProduct,cheapestSteps.inBasketProduct);
 
