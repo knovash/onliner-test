@@ -26,29 +26,21 @@ public class BaseTest {
                       @Optional("version") String version) {
         log.info("BEFORE CLASS config get properties");
         Config.getProperties();
-
-        log.info("BEFORE CLASS startType: " + startType);
+        log.info("BEFORE CLASS from suite parameter startType: " + startType);
+        String envType = System.getenv("START_TYPE");
+        log.info("BEFORE CLASS from env var envType: " + envType);
+        if (envType == null) {
+            startType = "local";
+        } else {
+            startType = envType;
+        }
+        log.info("BEFORE CLASS startType run: " + startType);
         if (startType.equals("local")) {
             startLocal();
         } else if (startType.equals("docker")) {
             startDocker(browser, version);
         }
     }
-
-//    @BeforeClass
-//    public void beforeClass() {
-//        log.info("BEFORE CLASS config get properties");
-//        Config.getProperties();
-//        log.info("BEFORE CLASS add allure listener");
-//        SelenideLogger.addListener("allure", new AllureSelenide()
-//                .savePageSource(true)
-//                .screenshots(true)
-//                .enableLogs(LogType.BROWSER, Level.ALL)
-//        );
-//        Configuration.browser = Browsers.CHROME;
-//        Configuration.pageLoadTimeout = 90000;
-//        /** https://github.com/selenide/selenide/issues/1268 def 30 sec. for mobile connection 90 000 msec */
-//    }
 
     public static void startLocal() {
         log.info("START TYPE LOCAL");
@@ -58,6 +50,8 @@ public class BaseTest {
                 .enableLogs(LogType.BROWSER, Level.ALL));
         Configuration.browserSize = "1920x1080";
         Configuration.browser = CHROME;
+        /** https://github.com/selenide/selenide/issues/1268 def 30 sec. for mobile connection 90 000 msec */
+        Configuration.pageLoadTimeout = 90000;
     }
 
     public static void startDocker(String browser, String version) {
