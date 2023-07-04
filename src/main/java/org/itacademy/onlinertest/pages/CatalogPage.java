@@ -13,7 +13,6 @@ public class CatalogPage {
     public SelenideElement fastSearchInput = $(By.xpath("//input[@class='fast-search__input']"));
     public SelenideElement frame = $(By.xpath("//iframe[@class='modal-iframe']"));
     public ElementsCollection searchResults = $$(By.xpath("//div[@class='result__item result__item_product']"));
-    public SelenideElement productTitle = $(By.xpath("//h1[@class='catalog-masthead__title js-nav-header']"));
     public SelenideElement buttonGoToBasket = $(By.xpath("//a[contains(text(), 'Перейти в корзину')]"));
     public String linkToProductPage = ".//a[@class='button button_orange product__button']";
     public SelenideElement offers = $(By.xpath("//div[@class='offers-list']"));
