@@ -6,7 +6,6 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.qameta.allure.selenide.LogType;
 import lombok.extern.log4j.Log4j2;
-import org.itacademy.onlinertest.utils.Config;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
@@ -75,7 +74,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        log.info("BEFORE METHOD open home page: " + Config.getHomePage());
+        log.info("BEFORE METHOD open home page: ");
 //        Selenide.open(Config.getHomePage());
         Selenide.open(URL);
     }
