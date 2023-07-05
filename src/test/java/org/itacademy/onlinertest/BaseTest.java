@@ -12,6 +12,7 @@ import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 import static com.codeborne.selenide.Browsers.CHROME;
@@ -19,13 +20,16 @@ import static com.codeborne.selenide.Browsers.CHROME;
 @Log4j2
 public class BaseTest {
 
+    private final ResourceBundle bundle = ResourceBundle.getBundle("config");
+    private final String URL = bundle.getString("homePage");
+
     @BeforeClass
     @Parameters({"startType", "browser", "version"})
     public void start(String startType,
                       @Optional("browser") String browser,
                       @Optional("version") String version) {
         log.info("BEFORE CLASS config get properties");
-        Config.getProperties();
+//        Config.getProperties();
 
         log.info("BEFORE CLASS startType run: " + startType);
         if (startType.equals("local")) {
@@ -72,7 +76,8 @@ public class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         log.info("BEFORE METHOD open home page: " + Config.getHomePage());
-        Selenide.open(Config.getHomePage());
+//        Selenide.open(Config.getHomePage());
+        Selenide.open(URL);
     }
 
     @AfterMethod
