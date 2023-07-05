@@ -4,7 +4,7 @@
     <parameter name="startType" value="local"/>
     <test name="Simple">
         <classes>
-            <class name="org.itacademy.homework9selenide.PureSelenideTest"/>
+            <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>
         </classes>
     </test>
 </suite>
