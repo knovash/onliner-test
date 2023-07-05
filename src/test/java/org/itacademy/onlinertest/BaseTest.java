@@ -26,14 +26,7 @@ public class BaseTest {
                       @Optional("version") String version) {
         log.info("BEFORE CLASS config get properties");
         Config.getProperties();
-        log.info("BEFORE CLASS from suite parameter startType: " + startType);
-        String envType = System.getenv("START_TYPE");
-        log.info("BEFORE CLASS from env var envType: " + envType);
-        if (envType == null) {
-            startType = "local";
-        } else {
-            startType = envType;
-        }
+
         log.info("BEFORE CLASS startType run: " + startType);
         if (startType.equals("local")) {
             startLocal();
