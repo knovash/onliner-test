@@ -8,10 +8,11 @@
         <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
     </listeners>
 
-    <test name="Cheapest product">
-
+    <test name="Test 1">
         <classes>
-            <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>
+<!--            <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>-->
+            <class name="org.itacademy.onlinertest.CatalogSearchTest"/>
+<!--            <class name="org.itacademy.onlinertest.CatalogFilterTest"/>-->
         </classes>
     </test>
 </suite>

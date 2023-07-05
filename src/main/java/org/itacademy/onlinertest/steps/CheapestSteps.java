@@ -21,19 +21,19 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class CheapestSteps {
 
     private CatalogPage catalogPage = new CatalogPage();
-    public ElementsCollection searchResultsElements;
+    public static ElementsCollection searchResultsElements;
     public SelenideElement cheapestProductElement;
     public CatalogItem cheapestProduct = new CatalogItem();
     public CatalogItem inBasketProduct = new CatalogItem();
 
-    @Step("Input search value")
+    @Step("input search value")
     public void inputSearchValue(String value) {
         log.info("Input search value: " + value);
         WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 120);
         catalogPage.fastSearchInput.setValue(value);
     }
 
-    @Step("Switch to results frame")
+    @Step("switch to results frame")
     public void switchToResultsFrame() {
         log.info("switch to results frame");
         SelenideElement frame = catalogPage.frame;
