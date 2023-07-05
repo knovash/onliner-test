@@ -21,6 +21,7 @@ public class BaseTest {
 
     private final ResourceBundle bundle = ResourceBundle.getBundle("config");
     private final String URL = bundle.getString("homePage");
+    private final String DATAFILE = bundle.getString("dataFile");
 
     @BeforeClass
     @Parameters({"startType", "browser", "version"})
@@ -28,7 +29,8 @@ public class BaseTest {
                       @Optional("browser") String browser,
                       @Optional("version") String version) {
         log.info("BEFORE CLASS config get properties");
-//        Config.getProperties();
+        log.info("BUNDLE URL: "+ URL);
+        log.info("BUNDLE DATA: "+ DATAFILE);
 
         log.info("BEFORE CLASS startType run: " + startType);
         if (startType.equals("local")) {
@@ -75,7 +77,6 @@ public class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         log.info("BEFORE METHOD open home page: ");
-//        Selenide.open(Config.getHomePage());
         Selenide.open(URL);
     }
 

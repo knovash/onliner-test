@@ -20,7 +20,7 @@
         <java-version>11</java-version>
         <maven-surefire-plugin-version>3.1.0</maven-surefire-plugin-version>
         <aspectj.version>1.9.2</aspectj.version>
-        <suite>src/test/resources/local.xml</suite>
+        <suite>src/test/resources/docker.xml</suite>
     </properties>
 
     <dependencies>
