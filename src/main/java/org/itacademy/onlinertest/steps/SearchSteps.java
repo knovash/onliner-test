@@ -1,18 +1,14 @@
 package org.itacademy.onlinertest.steps;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.itacademy.onlinertest.pages.CatalogPage;
-import org.openqa.selenium.By;
+import org.itacademy.onlinertest.utils.ElementUtils;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 @Log4j2
 public class SearchSteps {
-
-    private CatalogPage catalogPage = new CatalogPage();
 
     @Step("check item in results")
     public SoftAssert checkItemInResults(String item) {
@@ -22,14 +18,9 @@ public class SearchSteps {
         SoftAssert sa = new SoftAssert();
         Assert.assertFalse(results.isEmpty(), "RESULT LIST IS EMPTY");
         results.stream()
-                .map(element -> getTitle(element))
+                .map(element -> ElementUtils.getTitle(element))
                 .peek(title -> sa.assertTrue(title.toLowerCase().contains(item.toLowerCase()), "[" + title + "] NOT CONTAINS [" + item + "]"))
                 .forEach(title -> log.info("\nTITLE: " + title + " - contains - " + item + " = " + title.toLowerCase().contains(item.toLowerCase())));
         return sa;
-    }
-
-    public String getTitle(SelenideElement element) {
-        String title = element.$(By.xpath(catalogPage.cheapestProductTitle)).getText();
-        return title;
     }
 }

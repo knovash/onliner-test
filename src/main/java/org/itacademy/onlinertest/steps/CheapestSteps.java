@@ -104,7 +104,6 @@ public class CheapestSteps {
         selector.selectOptionContainingText("возраст");
         selector.click();
         selector.selectOption(2);
-        log.info("send keys e nTER to sort selector");
         selector.sendKeys(Keys.ENTER);
     }
 

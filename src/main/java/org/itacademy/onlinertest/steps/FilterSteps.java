@@ -18,51 +18,51 @@ public class FilterSteps {
     private FilterPage filterPage = new FilterPage();
     public static ElementsCollection filterResultElements;
 
-    @Step("buttonCatalogClick")
+    @Step("button catalog click")
     public void buttonCatalogClick() {
-        log.info("buttonCatalogClick");
+        log.info("button catalog click");
         WaitUtils.waitForVisibility(filterPage.buttonCatalog);
         filterPage.buttonCatalog.click();
     }
 
-    @Step("buttonElectronicClick")
+    @Step("button electronic click")
     public void buttonElectronicClick() {
-        log.info("buttonElectronicClick");
+        log.info("button electronic click");
         WaitUtils.waitForVisibility(filterPage.buttonElectronic);
         filterPage.buttonElectronic.click();
     }
 
-    @Step("buttonMobilePhonesClick")
+    @Step("button mobile phones click")
     public void buttonMobilePhonesClick() {
-        log.info("buttonMobilePhonesClick");
+        log.info("button mobile phones click");
         WaitUtils.waitForVisibility(filterPage.buttonMobilePhones);
         filterPage.buttonMobilePhones.click();
     }
 
-    @Step("buttonSmartPhonesClick")
+    @Step("button smart phones click")
     public void buttonSmartPhonesClick() {
-        log.info("buttonSmartPhonesClick");
+        log.info("button smart phones click");
         WaitUtils.waitForVisibility(filterPage.buttonSmartPhones);
         filterPage.buttonSmartPhones.click();
     }
 
-    @Step("inputPriceLow")
+    @Step("input price low")
     public void inputPriceLow(String value) {
-        log.info("inputPriceLow" + value);
-        WaitUtils.waitForVisibility(filterPage.priceLow);
-        filterPage.priceLow.setValue(value);
+        log.info("input price low" + value);
+        WaitUtils.waitForVisibility(filterPage.inputPriceMin);
+        filterPage.inputPriceMin.setValue(value);
     }
 
-    @Step("inputPriceHi")
+    @Step("input price hi")
     public void inputPriceHi(String value) {
-        log.info("inputPriceHi" + value);
-        WaitUtils.waitForVisibility(filterPage.priceHi);
-        filterPage.priceHi.setValue(value);
+        log.info("input price hi" + value);
+        WaitUtils.waitForVisibility(filterPage.inputPriceMax);
+        filterPage.inputPriceMax.setValue(value);
     }
 
-    @Step("filterSelectBrand")
+    @Step("filter select brand")
     public void filterSelectBrand(String brand) {
-        log.info("filterSelectBrand: " + brand);
+        log.info("filter select brand: " + brand);
         SelenideElement shops = filterPage.selectorShops;
         WaitUtils.waitForVisibility(shops);
         shops.scrollIntoView(false);
@@ -77,17 +77,17 @@ public class FilterSteps {
         allBrand.click();
     }
 
-    @Step("collectResultElements")
+    @Step("collect result elements")
     public void collectResultElements() {
-        log.info("collectResultElements");
+        log.info("collect result elements");
         WaitUtils.waitForVisibility(3);
         FilterSteps.filterResultElements = filterPage.filterResults;
-        log.info("collectResultElements SIZE " + FilterSteps.filterResultElements.size());
+        log.info("collect result elements SIZE " + FilterSteps.filterResultElements.size());
     }
 
-    @Step("checkResults")
+    @Step("check results")
     public SoftAssert checkResults(String brand) {
-        log.info("checkResults BRAND: " + brand);
+        log.info("check results BRAND: " + brand);
         SoftAssert sa = new SoftAssert();
         Assert.assertFalse(FilterSteps.filterResultElements.isEmpty(), "RESULT LIST IS EMPTY");
         FilterSteps.filterResultElements.stream()

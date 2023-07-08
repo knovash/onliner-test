@@ -21,4 +21,9 @@ public class ElementUtils {
         }
         return Double.valueOf(priceText);
     }
+
+    public static String getTitle(SelenideElement element) {
+        String title = element.$(By.xpath(catalogPage.cheapestProductTitle)).getText();
+        return title;
+    }
 }
