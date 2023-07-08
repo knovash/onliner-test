@@ -10,10 +10,13 @@ import org.itacademy.onlinertest.steps.CheapestSteps;
 import org.itacademy.onlinertest.steps.FilterSteps;
 import org.itacademy.onlinertest.steps.SearchSteps;
 import org.itacademy.onlinertest.utils.DataProviderCatalogItems;
+import org.itacademy.onlinertest.utils.DataProviderFilterItems;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +35,12 @@ public class CatalogFilterTest extends BaseTest {
 
     @Description("Find cheapest product and add to basket")
     @Test(testName = "Search product",
-            dataProvider = "catalogItems",
-            dataProviderClass = DataProviderCatalogItems.class)
+            dataProvider = "filterItems",
+            dataProviderClass = DataProviderFilterItems.class)
     public void fTest(CatalogItem item) {
         log.info("TEST CHEAPEST START");
-//        String brand = item.brand;
-        String brand = "samsung";
-
+        log.info("BRAND: " + item.brand);
+        String brand = item.brand;
 
 //        filterSteps.buttonCatalogClick();
 //        filterSteps.buttonElectronicClick();
@@ -51,23 +53,23 @@ public class CatalogFilterTest extends BaseTest {
         shops.scrollIntoView(false);
         log.info("shops " + shops.isDisplayed());
 
-        SelenideElement all = $(By.xpath("//div[@class='schema-filter-control__item' and contains(text(), 'Все')]"));
-        WaitUtils.waitForVisibility(all);
-        actions().scrollToElement(all);
-        log.info("all " + all.isDisplayed());
-        all.click();
+        SelenideElement allBrand = $(By.xpath("//div[@class='schema-filter-control__item' and contains(text(), 'Все')]"));
+        WaitUtils.waitForVisibility(allBrand);
+        actions().scrollToElement(allBrand);
+        log.info("all " + allBrand.isDisplayed());
+        allBrand.click();
 
         WaitUtils.waitForVisibility(1);
 
-        SelenideElement samsung = $(By.xpath("//div[@class='schema-filter-popover__title' and contains(text(), 'Производитель')]/following-sibling::div/div/label/span[contains(text(), 'Apple')]"));
-//        SelenideElement samsung = $(By.xpath("//div[@class='schema-filter-popover__title' and contains(text(), 'Производитель')]/following-sibling::div//span/input[@value='apple']"));
+        SelenideElement brandCheckBox = $(By.xpath("//div[@class='schema-filter-popover__title' and contains(text(), 'Производитель')]/following-sibling::div/div/label/span[contains(text(), 'Samsung')]"));
+//        SelenideElement brandCheckBox = $(By.xpath("//div[@class='schema-filter-popover__title' and contains(text(), 'Производитель')]/following-sibling::div//span/input[@value='Samsung']"));
 
-        WaitUtils.waitForVisibility(samsung);
-        log.info("samsung " + samsung.isDisplayed());
-        log.info("samsung " + samsung.getText());
-        samsung.click();
+        WaitUtils.waitForVisibility(brandCheckBox);
+        log.info("samsung " + brandCheckBox.isDisplayed());
+        log.info("samsung " + brandCheckBox.getText());
+        brandCheckBox.click();
         WaitUtils.waitForVisibility(1);
-        all.click();
+        allBrand.click();
 
         WaitUtils.waitForVisibility(1);
 
@@ -75,12 +77,14 @@ public class CatalogFilterTest extends BaseTest {
         WaitUtils.waitForVisibility(titles.get(0));
         log.info("SIZE " + titles.size());
 
+
+        SoftAssert sa = new SoftAssert();
+        Assert.assertFalse(titles.isEmpty(), "RESULT LIST IS EMPTY");
         titles.stream()
                 .peek(element -> log.info("TEXT " + element.getText().contains(brand)))
+                .peek(element -> sa.assertTrue(element.getText().contains(brand), "NOT CONTAINS"))
                 .forEach(element -> log.info("TEXT " + element.getText()));
-
-
-        WaitUtils.waitForVisibility(30);
-
+        sa.assertAll();
+        WaitUtils.waitForVisibility(10);
     }
 }

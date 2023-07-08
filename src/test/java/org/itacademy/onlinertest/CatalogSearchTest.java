@@ -6,6 +6,7 @@ import org.itacademy.onlinertest.models.CatalogItem;
 import org.itacademy.onlinertest.steps.CheapestSteps;
 import org.itacademy.onlinertest.steps.SearchSteps;
 import org.itacademy.onlinertest.utils.DataProviderCatalogItems;
+import org.itacademy.onlinertest.utils.DataProviderSearchItems;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -18,8 +19,8 @@ public class CatalogSearchTest extends BaseTest {
 
     @Description("Сheck the search results")
     @Test(testName = "Сheck the search results",
-            dataProvider = "catalogItems",
-            dataProviderClass = DataProviderCatalogItems.class)
+            dataProvider = "searchItems",
+            dataProviderClass = DataProviderSearchItems.class)
     public void checkSearchResultsTest(CatalogItem item) {
         log.info("TEST SEARCH START");
         cheapestSteps.inputSearchValue(item.getName());

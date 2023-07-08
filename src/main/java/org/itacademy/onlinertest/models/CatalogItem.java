@@ -13,4 +13,5 @@ public class CatalogItem {
 
     public String name;
     public String price;
+    public String brand;
 }

@@ -11,8 +11,8 @@
     <test name="Test 1">
         <classes>
 <!--            <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>-->
-            <class name="org.itacademy.onlinertest.CatalogSearchTest"/>
-<!--            <class name="org.itacademy.onlinertest.CatalogFilterTest"/>-->
+<!--            <class name="org.itacademy.onlinertest.CatalogSearchTest"/>-->
+            <class name="org.itacademy.onlinertest.CatalogFilterTest"/>
         </classes>
     </test>
 </suite>

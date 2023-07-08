@@ -23,14 +23,13 @@ public class SearchSteps {
         Assert.assertFalse(results.isEmpty(), "RESULT LIST IS EMPTY");
         results.stream()
                 .map(element -> getTitle(element))
-                .peek(title -> sa.assertTrue(title.contains(item), "[" + title + "] NOT CONTAINS [" + item + "]"))
+                .peek(title -> sa.assertTrue(title.contains(item.toLowerCase()), "[" + title + "] NOT CONTAINS [" + item + "]"))
                 .forEach(title -> log.info("\nTITLE: " + title + " - contains - " + item + " = " + title.contains(item)));
         sa.assertAll();
     }
 
     public String getTitle(SelenideElement element) {
-        String title = element.$(By.xpath(catalogPage.cheapestProductTitle)).getText();
-//        title = title.replace(" ", "");
+        String title = element.$(By.xpath(catalogPage.cheapestProductTitle)).getText().toLowerCase();
         return title;
     }
 }
