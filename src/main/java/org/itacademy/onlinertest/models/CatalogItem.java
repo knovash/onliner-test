@@ -14,4 +14,6 @@ public class CatalogItem {
     public String name;
     public String price;
     public String brand;
+    public String priceMin;
+    public String priceMax;
 }

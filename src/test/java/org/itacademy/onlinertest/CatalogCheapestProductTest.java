@@ -1,11 +1,10 @@
 package org.itacademy.onlinertest;
 
-import com.codeborne.selenide.testng.ScreenShooter;
 import io.qameta.allure.Description;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.CatalogItem;
 import org.itacademy.onlinertest.steps.CheapestSteps;
-import org.itacademy.onlinertest.utils.DataProviderCatalogItems;
+import org.itacademy.onlinertest.utils.DataProviderCheapestItems;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -17,12 +16,11 @@ public class CatalogCheapestProductTest extends BaseTest {
     private CheapestSteps cheapestSteps = new CheapestSteps();
 
     @Description("Find cheapest product and add to basket")
-    @Test(testName = "Cheapest product",
-            dataProvider = "catalogItems",
-            dataProviderClass = DataProviderCatalogItems.class)
+    @Test(testName = "Cheapest test",
+            dataProvider = "cheapestItems",
+            dataProviderClass = DataProviderCheapestItems.class)
     public void cheapestProductTest(CatalogItem item) {
         log.info("TEST CHEAPEST START");
-        ScreenShooter.captureSuccessfulTests = true;
         cheapestSteps.inputSearchValue(item.getName());
         cheapestSteps.switchToResultsFrame();
         cheapestSteps.getSearchResults();
@@ -37,10 +35,6 @@ public class CatalogCheapestProductTest extends BaseTest {
         cheapestSteps.writeToFileCheapestProductObject();
         log.info("Cheapest product: " + cheapestSteps.cheapestProduct);
         log.info("In basket product: " + cheapestSteps.inBasketProduct);
-
-        Assert.assertEquals(cheapestSteps.cheapestProduct,cheapestSteps.inBasketProduct);
-
-        /** used for debug */
-//        WaitUtils.waitForVisibility(3);
+        Assert.assertEquals(cheapestSteps.cheapestProduct, cheapestSteps.inBasketProduct);
     }
 }

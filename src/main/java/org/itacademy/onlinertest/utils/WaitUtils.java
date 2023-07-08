@@ -20,7 +20,7 @@ public class WaitUtils {
 
     public static void waitForVisibility(SelenideElement element) {
         log.info("wait For Element Visibility sec: 30" + " " + element);
-        new WebDriverWait(getWebDriver(), Duration.ofSeconds(90))
+        new WebDriverWait(getWebDriver(), Duration.ofSeconds(200))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 

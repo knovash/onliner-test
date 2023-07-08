@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 @Log4j2
-public class DataProviderCatalogItems {
+public class DataProviderCheapestItems {
 
     @DataProvider
-    public Object[][] catalogItems() {
+    public Object[][] cheapestItems() {
         Catalog object = JsonUtil.getObjectFromFile(Config.getDataFileCheapest(), Catalog.class);
         List<CatalogItem> list = object.getItems();
         int size = list.size();

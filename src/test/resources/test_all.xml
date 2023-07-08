@@ -10,9 +10,21 @@
         <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
     </listeners>
 
-    <test name="Test 1">
+    <test name="Test 1. Check search results">
         <classes>
             <class name="org.itacademy.onlinertest.CatalogSearchTest"/>
+        </classes>
+    </test>
+
+    <test name="Test 2. Cheapest product add to basket">
+        <classes>
+            <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>
+        </classes>
+    </test>
+
+    <test name="Test 3. Check filter results">
+        <classes>
+            <class name="org.itacademy.onlinertest.CatalogFilterTest"/>
         </classes>
     </test>
 

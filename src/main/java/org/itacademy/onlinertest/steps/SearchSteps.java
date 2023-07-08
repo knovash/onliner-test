@@ -15,7 +15,7 @@ public class SearchSteps {
     private CatalogPage catalogPage = new CatalogPage();
 
     @Step("check item in results")
-    public void checkItemInResults(String item) {
+    public SoftAssert checkItemInResults(String item) {
         log.info("check item in results");
         ElementsCollection results = CheapestSteps.searchResultsElements;
         log.info("results: " + results.size());
@@ -23,13 +23,13 @@ public class SearchSteps {
         Assert.assertFalse(results.isEmpty(), "RESULT LIST IS EMPTY");
         results.stream()
                 .map(element -> getTitle(element))
-                .peek(title -> sa.assertTrue(title.contains(item.toLowerCase()), "[" + title + "] NOT CONTAINS [" + item + "]"))
-                .forEach(title -> log.info("\nTITLE: " + title + " - contains - " + item + " = " + title.contains(item)));
-        sa.assertAll();
+                .peek(title -> sa.assertTrue(title.toLowerCase().contains(item.toLowerCase()), "[" + title + "] NOT CONTAINS [" + item + "]"))
+                .forEach(title -> log.info("\nTITLE: " + title + " - contains - " + item + " = " + title.toLowerCase().contains(item.toLowerCase())));
+        return sa;
     }
 
     public String getTitle(SelenideElement element) {
-        String title = element.$(By.xpath(catalogPage.cheapestProductTitle)).getText().toLowerCase();
+        String title = element.$(By.xpath(catalogPage.cheapestProductTitle)).getText();
         return title;
     }
 }

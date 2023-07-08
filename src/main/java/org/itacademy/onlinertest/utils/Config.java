@@ -13,7 +13,6 @@ import java.util.Properties;
 public class Config {
 
     private static String homePage;
-    private static String dataFile;
     private static String dataFileCheapest;
     private static String dataFileSearch;
     private static String dataFileFilter;
@@ -28,12 +27,10 @@ public class Config {
             properties.load(in);
             in.close();
             homePage = properties.getProperty("homePage");
-            dataFile = properties.getProperty("dataFile");
             dataFileCheapest = properties.getProperty("dataFileCheapest");
             dataFileSearch = properties.getProperty("dataFileSearch");
             dataFileFilter = properties.getProperty("dataFileFilter");
             log.info("homePage: " + homePage);
-            log.info("dataFile: " + dataFile);
             log.info("dataFileCheapest: " + dataFileCheapest);
             log.info("dataFileSearch: " + dataFileSearch);
             log.info("dataFileFilter: " + dataFileFilter);
@@ -44,10 +41,6 @@ public class Config {
 
     public static String getHomePage() {
         return homePage;
-    }
-
-    public static String getDataFile() {
-        return dataFile;
     }
 
     public static String getDataFileCheapest() {
