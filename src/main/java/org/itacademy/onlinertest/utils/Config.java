@@ -16,6 +16,7 @@ public class Config {
     private static String dataFileCheapest;
     private static String dataFileSearch;
     private static String dataFileFilter;
+    private static String dataFileOrder;
 
     public static void getProperties() {
         log.info("CONFIG GET PROPERTIES");
@@ -30,10 +31,12 @@ public class Config {
             dataFileCheapest = properties.getProperty("dataFileCheapest");
             dataFileSearch = properties.getProperty("dataFileSearch");
             dataFileFilter = properties.getProperty("dataFileFilter");
+            dataFileOrder = properties.getProperty("dataFileOrder");
             log.info("homePage: " + homePage);
             log.info("dataFileCheapest: " + dataFileCheapest);
             log.info("dataFileSearch: " + dataFileSearch);
             log.info("dataFileFilter: " + dataFileFilter);
+            log.info("dataFileOrder: " + dataFileOrder);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -53,5 +56,9 @@ public class Config {
 
     public static String getDataFileFilter() {
         return dataFileFilter;
+    }
+
+    public static String getDataFileOrder() {
+        return dataFileOrder;
     }
 }

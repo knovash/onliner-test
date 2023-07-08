@@ -1,0 +1,27 @@
+{
+  "items" : [ {
+    "street":"Кульман",
+    "building":"15",
+    "entrance":"2",
+    "floor":"7",
+    "apartment":"222",
+    "comment":"Очень быстро",
+    "firstName":"Константин",
+    "lastName":"Новаш",
+    "email":"novash.ki@gmail.com",
+    "phone":"293246164"
+    },
+    {
+      "street":"Кульман",
+      "building":"15",
+      "entrance":"2",
+      "floor":"7",
+      "apartment":"222",
+      "comment":"Очень быстро",
+      "firstName":"Константин",
+      "lastName":"Новаш",
+      "email":"novash.ki@gmail.com",
+      "phone":"293246164"
+    }
+  ]
+}
