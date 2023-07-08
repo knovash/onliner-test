@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class DataProviderOrderItems {
 
     @DataProvider
-    public Object[][] filterItems() {
+    public Object[][] orderItems() {
         Orders object = JsonUtil.getObjectFromFile(Config.getDataFileOrder(), Orders.class);
         List<OrderItem> list = object.getOrders();
         int size = list.size();

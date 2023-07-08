@@ -21,6 +21,7 @@ public class CatalogOrderFormTest extends BaseTest {
             dataProviderClass = DataProviderOrderItems.class)
     public void checkOrderFormTest(OrderItem order) {
         log.info("TEST ORDER START");
+        log.info("ORDER: " + order);
         orderSteps.clickFirstOffer();
         orderSteps.clickBuyNow();
         orderSteps.fillForm(order);
