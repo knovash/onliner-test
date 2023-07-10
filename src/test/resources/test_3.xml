@@ -10,7 +10,7 @@
         <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
     </listeners>
 
-    <test name="Test 2. Cheapest product add to basket">
+    <test name="Test 2. Cheapest product test">
         <classes>
             <class name="org.itacademy.onlinertest.CatalogCheapestProductTest"/>
         </classes>

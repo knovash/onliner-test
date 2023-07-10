@@ -10,7 +10,7 @@
         <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
     </listeners>
 
-    <test name="Test 2. Check filter results">
+    <test name="Test 2. Filter results test">
         <classes>
             <class name="org.itacademy.onlinertest.CatalogFilterTest"/>
         </classes>
