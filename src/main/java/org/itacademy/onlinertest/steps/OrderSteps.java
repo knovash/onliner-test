@@ -1,15 +1,11 @@
 package org.itacademy.onlinertest.steps;
 
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.OrderItem;
 import org.itacademy.onlinertest.pages.OrderPage;
 import org.itacademy.onlinertest.utils.WaitUtils;
-import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
-
-import static com.codeborne.selenide.Selenide.$;
 
 @Log4j2
 public class OrderSteps {
@@ -38,6 +34,12 @@ public class OrderSteps {
     public void fillForm(OrderItem order) {
         log.info("check item in results");
         WaitUtils.waitForVisibility(orderPage.street);
+        orderPage.street.click();
+        log.info("CLEAR " + orderPage.clearStreet.isDisplayed());
+        if (orderPage.clearStreet.isDisplayed()) {
+            orderPage.clearStreet.click();
+        }
+        orderPage.street.clear();
         orderPage.street.setValue(order.street);
         log.info("street disp: " + orderPage.street.isDisplayed() + " value set: " + order.street);
         orderPage.building.setValue(order.building);
@@ -64,18 +66,18 @@ public class OrderSteps {
     public SoftAssert checkForm(OrderItem order) {
         log.info("check item in results");
         SoftAssert sa = new SoftAssert();
-        sa.assertEquals(orderPage.street.getValue(), order.street, orderPage.street.getValue() + " NOT " + order.street);
-        sa.assertEquals(orderPage.building.getValue(), order.building, orderPage.building.getValue() + " NOT " + order.building);
-        sa.assertEquals(orderPage.entrance.getValue(), order.entrance, orderPage.entrance.getValue() + " NOT " + order.entrance);
-        sa.assertEquals(orderPage.floor.getValue(), order.floor, orderPage.floor.getValue() + " NOT " + order.floor);
-        sa.assertEquals(orderPage.apartment.getValue(), order.apartment, orderPage.apartment.getValue() + " NOT " + order.apartment);
-        sa.assertEquals(orderPage.comment.getValue(), order.comment, orderPage.comment.getValue() + " NOT " + order.comment);
-        sa.assertEquals(orderPage.firstName.getValue(), order.firstName, orderPage.firstName.getValue() + " NOT " + order.firstName);
-        sa.assertEquals(orderPage.lastName.getValue(), order.lastName, orderPage.lastName.getValue() + " NOT " + order.lastName);
-        sa.assertEquals(orderPage.email.getValue(), order.email, orderPage.email.getValue() + " NOT " + order.email);
+        sa.assertEquals(orderPage.street.getValue(), order.street);
+        sa.assertEquals(orderPage.building.getValue(), order.building);
+        sa.assertEquals(orderPage.entrance.getValue(), order.entrance);
+        sa.assertEquals(orderPage.floor.getValue(), order.floor);
+        sa.assertEquals(orderPage.apartment.getValue(), order.apartment);
+        sa.assertEquals(orderPage.comment.getValue(), order.comment);
+        sa.assertEquals(orderPage.firstName.getValue(), order.firstName);
+        sa.assertEquals(orderPage.lastName.getValue(), order.lastName);
+        sa.assertEquals(orderPage.email.getValue(), order.email);
         sa.assertEquals(orderPage.phone.getValue()
-                .replace(" ","")
-                .replace("-",""), order.phone, orderPage.phone.getValue() + " NOT " + order.phone);
+                .replace(" ", "")
+                .replace("-", ""), order.phone);
         return sa;
     }
 }

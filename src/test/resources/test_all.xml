@@ -28,4 +28,10 @@
         </classes>
     </test>
 
+    <test name="Test 4. Fill order form">
+        <classes>
+            <class name="org.itacademy.onlinertest.CatalogOrderFormTest"/>
+        </classes>
+    </test>
+
 </suite>

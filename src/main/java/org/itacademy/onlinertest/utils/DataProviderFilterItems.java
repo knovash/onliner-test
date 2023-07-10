@@ -13,7 +13,7 @@ public class DataProviderFilterItems {
 
     @DataProvider
     public Object[][] filterItems() {
-        Catalog object = JsonUtil.getObjectFromFile(Config.getDataFileFilter(), Catalog.class);
+        Catalog object = JsonUtils.getObjectFromFile(Config.getDataFileFilter(), Catalog.class);
         List<CatalogItem> list = object.getItems();
         int size = list.size();
         Object[][] data = new Object[size][1];

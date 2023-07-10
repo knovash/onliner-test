@@ -19,4 +19,5 @@ public class OrderPage {
     public SelenideElement lastName = $(By.xpath("//div[@class='cart-form__label-title' and contains(text(), 'Фамилия')]/../../../following-sibling::div//input"));
     public SelenideElement email = $(By.xpath("//div[@class='cart-form__label-title' and contains(text(), 'E-mail')]/../../../following-sibling::div//input"));
     public SelenideElement phone = $(By.xpath("//div[contains(text(), 'Телефон')]/following-sibling::div//input"));
+    public SelenideElement clearStreet = $(By.xpath("//div[@class='auth-input__helper auth-input__helper_clear auth-input__helper_visible auth-form__input-helper']"));
 }

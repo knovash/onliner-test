@@ -1,15 +1,27 @@
 {
   "orders" : [ {
     "street":"Кульман",
-    "building":"15",
-    "entrance":"2",
-    "floor":"7",
-    "apartment":"222",
+    "building":"11",
+    "entrance":"11",
+    "floor":"11",
+    "apartment":"11",
     "comment":"Очень быстро",
     "firstName":"Константин",
     "lastName":"Новаш",
     "email":"novash.ki@gmail.com",
-    "phone":"293246164"
+    "phone":"293246666"
+    },
+    {
+      "street":"Богдановича",
+      "building":"22",
+      "entrance":"22",
+      "floor":"22",
+      "apartment":"22",
+      "comment":"Shut up and take my money!",
+      "firstName":"Петр",
+      "lastName":"Пронин",
+      "email":"user.xxx@gmail.com",
+      "phone":"293256664"
     }
   ]
 }

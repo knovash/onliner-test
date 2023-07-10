@@ -16,8 +16,8 @@ public class CatalogSearchTest extends BaseTest {
     private CheapestSteps cheapestSteps = new CheapestSteps();
     private SearchSteps searchSteps = new SearchSteps();
 
-    @Description("Сheck the search results")
-    @Test(testName = "Search test",
+    @Description("Сheck that all search results contain the desired product")
+    @Test(testName = "Search results test",
             dataProvider = "searchItems",
             dataProviderClass = DataProviderSearchItems.class)
     public void checkSearchResultsTest(CatalogItem item) {

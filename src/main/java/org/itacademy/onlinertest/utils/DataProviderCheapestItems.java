@@ -13,7 +13,7 @@ public class DataProviderCheapestItems {
 
     @DataProvider
     public Object[][] cheapestItems() {
-        Catalog object = JsonUtil.getObjectFromFile(Config.getDataFileCheapest(), Catalog.class);
+        Catalog object = JsonUtils.getObjectFromFile(Config.getDataFileCheapest(), Catalog.class);
         List<CatalogItem> list = object.getItems();
         int size = list.size();
         Object[][] data = new Object[size][1];

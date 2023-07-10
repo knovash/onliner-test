@@ -13,7 +13,7 @@ public class DataProviderOrderItems {
 
     @DataProvider
     public Object[][] orderItems() {
-        Orders object = JsonUtil.getObjectFromFile(Config.getDataFileOrder(), Orders.class);
+        Orders object = JsonUtils.getObjectFromFile(Config.getDataFileOrder(), Orders.class);
         List<OrderItem> list = object.getOrders();
         int size = list.size();
         Object[][] data = new Object[size][1];

@@ -7,7 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.CatalogItem;
 import org.itacademy.onlinertest.pages.CatalogPage;
 import org.itacademy.onlinertest.utils.ElementUtils;
-import org.itacademy.onlinertest.utils.JsonUtil;
+import org.itacademy.onlinertest.utils.JsonUtils;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -29,7 +29,7 @@ public class CheapestSteps {
     @Step("input search value")
     public void inputSearchValue(String value) {
         log.info("Input search value: " + value);
-        WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 120);
+        WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 60);
         catalogPage.fastSearchInput.setValue(value);
     }
 
@@ -137,6 +137,6 @@ public class CheapestSteps {
     public void writeToFileCheapestProductObject() {
         log.info("write to file cheapest product object");
         //TODO просто потестировать запись объектов в файл
-        JsonUtil.setObjectToFile(cheapestProduct, "result.json");
+        JsonUtils.setObjectToFile(cheapestProduct, "result.json");
     }
 }

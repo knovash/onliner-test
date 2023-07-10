@@ -1,5 +1,6 @@
 package org.itacademy.onlinertest;
 
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.OrderItem;
@@ -15,8 +16,8 @@ public class CatalogOrderFormTest extends BaseTest {
 
     private OrderSteps orderSteps = new OrderSteps();
 
-    @Description("Сheck the filter results")
-    @Test(testName = "Filter test",
+    @Description("Check that the order form fields are filled")
+    @Test(testName = "Order form test",
             dataProvider = "orderItems",
             dataProviderClass = DataProviderOrderItems.class)
     public void checkOrderFormTest(OrderItem order) {
@@ -26,6 +27,6 @@ public class CatalogOrderFormTest extends BaseTest {
         orderSteps.clickBuyNow();
         orderSteps.fillForm(order);
         orderSteps.checkForm(order).assertAll();
-        WaitUtils.waitForVisibility(30);
+        WaitUtils.waitForVisibility(2);
     }
 }

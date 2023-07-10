@@ -11,11 +11,11 @@ import java.net.URL;
 import java.util.Objects;
 
 @Log4j2
-public class JsonUtil {
+public class JsonUtils {
 
     public static <T> T getObjectFromFile(String fileName, Class<T> clazz) {
         log.info("filename: " + fileName + " class: " + clazz);
-        URL resourceItems = JsonUtil.class.getClassLoader().getResource("data/" + fileName);
+        URL resourceItems = JsonUtils.class.getClassLoader().getResource("data/" + fileName);
         File fileItems = new File(Objects.requireNonNull(resourceItems).getFile());
         ObjectMapper objectMapper = new ObjectMapper();
         T object;

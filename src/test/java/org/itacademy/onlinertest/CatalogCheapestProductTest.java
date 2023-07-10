@@ -15,11 +15,12 @@ public class CatalogCheapestProductTest extends BaseTest {
 
     private CheapestSteps cheapestSteps = new CheapestSteps();
 
-    @Description("Find cheapest product and add to basket")
-    @Test(testName = "Cheapest test",
+    @Description("Find the product at the cheapest price. Put it in the basket. " +
+            "Check that the desired product is in the basket")
+    @Test(testName = "Cheapest product test",
             dataProvider = "cheapestItems",
             dataProviderClass = DataProviderCheapestItems.class)
-    public void cheapestProductTest(CatalogItem item) {
+    public void checkCheapestProductTest(CatalogItem item) {
         log.info("TEST CHEAPEST START");
         cheapestSteps.inputSearchValue(item.getName());
         cheapestSteps.switchToResultsFrame();

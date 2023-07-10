@@ -13,7 +13,7 @@ public class DataProviderSearchItems {
 
     @DataProvider
     public Object[][] searchItems() {
-        Catalog object = JsonUtil.getObjectFromFile(Config.getDataFileSearch(), Catalog.class);
+        Catalog object = JsonUtils.getObjectFromFile(Config.getDataFileSearch(), Catalog.class);
         List<CatalogItem> list = object.getItems();
         int size = list.size();
         Object[][] data = new Object[size][1];
