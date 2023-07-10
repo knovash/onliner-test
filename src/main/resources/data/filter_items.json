@@ -1,0 +1,14 @@
+{
+  "items" : [ {
+    "brand" : "Apple",
+    "priceMin" : "1000",
+    "priceMax" : "1200"
+  },
+    {
+      "brand" : "Samsung",
+      "priceMin" : "500",
+      "priceMax" : "700"
+    }
+
+  ]
+}
