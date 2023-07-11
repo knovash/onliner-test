@@ -7,7 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.CatalogItem;
 import org.itacademy.onlinertest.pages.CatalogPage;
 import org.itacademy.onlinertest.utils.ElementUtils;
-import org.itacademy.onlinertest.utils.JsonUtil;
+import org.itacademy.onlinertest.utils.JsonUtils;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -21,19 +21,19 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class CheapestSteps {
 
     private CatalogPage catalogPage = new CatalogPage();
-    public ElementsCollection searchResultsElements;
+    public static ElementsCollection searchResultsElements;
     public SelenideElement cheapestProductElement;
     public CatalogItem cheapestProduct = new CatalogItem();
     public CatalogItem inBasketProduct = new CatalogItem();
 
-    @Step("Input search value")
+    @Step("input search value")
     public void inputSearchValue(String value) {
         log.info("Input search value: " + value);
-        WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 120);
+        WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 60);
         catalogPage.fastSearchInput.setValue(value);
     }
 
-    @Step("Switch to results frame")
+    @Step("switch to results frame")
     public void switchToResultsFrame() {
         log.info("switch to results frame");
         SelenideElement frame = catalogPage.frame;
@@ -104,7 +104,6 @@ public class CheapestSteps {
         selector.selectOptionContainingText("возраст");
         selector.click();
         selector.selectOption(2);
-        log.info("send keys e nTER to sort selector");
         selector.sendKeys(Keys.ENTER);
     }
 
@@ -138,6 +137,6 @@ public class CheapestSteps {
     public void writeToFileCheapestProductObject() {
         log.info("write to file cheapest product object");
         //TODO просто потестировать запись объектов в файл
-        JsonUtil.setObjectToFile(cheapestProduct, "result.json");
+        JsonUtils.setObjectToFile(cheapestProduct, "result.json");
     }
 }

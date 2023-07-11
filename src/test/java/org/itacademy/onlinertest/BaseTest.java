@@ -56,6 +56,8 @@ public class BaseTest {
         Configuration.browserSize = "1920x1080";
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = browser;
+        /** https://github.com/selenide/selenide/issues/1268 def 30 sec. for mobile connection 90 000 msec */
+        Configuration.pageLoadTimeout = 90000;
 
         Map<String, Boolean> options = new HashMap<>();
         options.put("enableVNC", true);

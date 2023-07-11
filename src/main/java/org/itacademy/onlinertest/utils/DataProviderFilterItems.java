@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 @Log4j2
-public class DataProviderCatalogItems {
+public class DataProviderFilterItems {
 
     @DataProvider
-    public Object[][] catalogItems() {
-        Catalog object = JsonUtil.getObjectFromFile(Config.getDataFile(), Catalog.class);
+    public Object[][] filterItems() {
+        Catalog object = JsonUtils.getObjectFromFile(Config.getDataFileFilter(), Catalog.class);
         List<CatalogItem> list = object.getItems();
         int size = list.size();
         Object[][] data = new Object[size][1];
