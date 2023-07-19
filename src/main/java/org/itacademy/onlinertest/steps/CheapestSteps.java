@@ -59,12 +59,13 @@ public class CheapestSteps {
             }
         };
 
-        cheapestProductElement = searchResultsElements.stream()
-                .peek(element -> log.info("PRICE: " + ElementUtils.getDouble(element)))
+        cheapestProductElement = searchResultsElements.asDynamicIterable().stream()
                 .filter(element -> ElementUtils.getDouble(element) > 0)
                 .min(priceComparator)
                 .get();
-        log.info("cheapest price is: " + ElementUtils.getDouble(cheapestProductElement));
+
+
+
     }
 
     @Step("set cheapest product object")
