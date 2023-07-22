@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite docker test 3" parallel="tests" thread-count="1">
+<suite name="Suite docker test 4" parallel="tests" thread-count="1">
 
     <parameter name="startType" value="docker"/>
     <parameter name="browser" value="chrome"/>
@@ -10,7 +10,7 @@
         <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
     </listeners>
 
-    <test name="Test 4. Order form test">
+    <test name="Test 4. Check fill order form">
         <classes>
             <class name="org.itacademy.onlinertest.CatalogOrderFormTest"/>
         </classes>

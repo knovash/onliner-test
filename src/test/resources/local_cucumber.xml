@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cucumber">
+<suite name="Suite local test 1. Cucumber">
 
-    <test name="Test check search results">
+    <test name="Test 1. Check search results">
         <classes>
             <class name="org.itacademy.onlinertest.CucumberRunnerTest"/>
         </classes>
     </test>
+
 </suite>
