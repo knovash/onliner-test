@@ -64,7 +64,7 @@ public class СucumberSearchSteps {
         log.info("results: " + results.size());
         SoftAssert sa = new SoftAssert();
         Assert.assertFalse(results.isEmpty(), "RESULT LIST IS EMPTY");
-        results.stream()
+        results.asDynamicIterable().stream()
                 .map(element -> ElementUtils.getTitle(element))
                 .peek(title -> sa.assertTrue(title.toLowerCase().contains(product.toLowerCase()), "[" + title + "] NOT CONTAINS [" + product + "]"))
                 .forEach(title -> log.info("\nTITLE: " + title + " - contains - " + product + " = " + title.toLowerCase().contains(product.toLowerCase())));

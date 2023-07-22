@@ -9,44 +9,44 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <codeborne-selenide-version>6.15.0</codeborne-selenide-version>
-<!--        <testng-version>7.8.0</testng-version>-->
-        <testng-version>7.0.0</testng-version>
+        <testng-version>7.8.0</testng-version>
+        <selenide-version>6.15.0</selenide-version>
         <slf4j-version>2.0.7</slf4j-version>
-<!--        <apache-logging-log4j-version>2.18.0</apache-logging-log4j-version>-->
-        <apache-logging-log4j-version>2.20.0</apache-logging-log4j-version>
+        <log4j-version>2.20.0</log4j-version>
         <projectlombok-version>1.18.28</projectlombok-version>
-<!--        <fasterxml-jackson-core-version>2.10.0</fasterxml-jackson-core-version>-->
-        <fasterxml-jackson-core-version>2.15.2</fasterxml-jackson-core-version>
-        <qameta-allure-selenide-version>2.22.2</qameta-allure-selenide-version>
-        <qameta-allure-testngversion>2.22.1</qameta-allure-testngversion>
+        <jackson-version>2.15.2</jackson-version>
+        <allure-testng-version>2.22.1</allure-testng-version>
+        <allure-selenide-version>2.22.2</allure-selenide-version>
+        <allure-cucumber-version>2.23.0</allure-cucumber-version>
         <cucumber-version>7.13.0</cucumber-version>
+        <gherkin-version>26.0.1</gherkin-version>
 
         <maven-compiler-plugin-version>3.11.0</maven-compiler-plugin-version>
-        <java-version>11</java-version>
+        <java-source-version>11</java-source-version>
+        <java-target-version>11</java-target-version>
         <maven-surefire-plugin-version>3.1.0</maven-surefire-plugin-version>
         <aspectj.version>1.9.2</aspectj.version>
-        <suite>src/test/resources/local.xml</suite>
+        <suite>src/test/resources/default.xml</suite>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>${codeborne-selenide-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide-testng</artifactId>
-            <version>${codeborne-selenide-version}</version>
-        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng-version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide-testng</artifactId>
+            <version>${selenide-version}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
@@ -61,12 +61,12 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>${apache-logging-log4j-version}</version>
+            <version>${log4j-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>${apache-logging-log4j-version}</version>
+            <version>${log4j-version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -74,57 +74,47 @@
             <version>${projectlombok-version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${fasterxml-jackson-core-version}</version>
+            <version>${jackson-version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.22.1</version>
+            <version>${allure-testng-version}</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-java-commons</artifactId>-->
-<!--            <version>${qameta-allure-tetstng-version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-selenide</artifactId>
-            <version>${qameta-allure-selenide-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>7.13.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>7.13.0</version>
+            <version>${allure-selenide-version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
-            <version>2.23.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>gherkin</artifactId>
-            <version>26.0.1</version>
+            <version>${allure-cucumber-version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>7.13.0</version>
+            <version>${cucumber-version}</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>${gherkin-version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -134,8 +124,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
+                    <source>${java-source-version}</source>
+                    <target>${java-target-version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -158,7 +148,6 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
-
             </plugin>
         </plugins>
     </build>

@@ -90,7 +90,7 @@ public class FilterSteps {
         log.info("check results BRAND: " + brand);
         SoftAssert sa = new SoftAssert();
         Assert.assertFalse(FilterSteps.filterResultElements.isEmpty(), "RESULT LIST IS EMPTY");
-        FilterSteps.filterResultElements.stream()
+        FilterSteps.filterResultElements.asDynamicIterable().stream()
                 .peek(element -> log.info("TITLE " + element.$(By.xpath(".//div[@class='schema-product__title']")).getText()))
                 .peek(element -> log.info("PRICE " + element.$(By.xpath(".//div[@class='schema-product__price']")).getText()))
                 .map(element -> element.$(By.xpath(".//div[@class='schema-product__title']")).getText())
