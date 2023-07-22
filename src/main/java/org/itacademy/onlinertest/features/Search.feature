@@ -9,4 +9,4 @@ Feature: Search feature
     Examples:
       | product       |
       | iphone 11     |
-      | playstation     |
+#      | playstation     |

@@ -10,7 +10,7 @@
 
     <test name="Test local">
         <classes>
-            <class name="org.itacademy.onlinertest.CatalogOrderFormTest"/>
+            <class name="org.itacademy.onlinertest.CatalogSearchTest"/>
         </classes>
     </test>
 </suite>
