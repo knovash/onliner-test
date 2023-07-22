@@ -1,11 +1,9 @@
-package org.itacademy.onlinertest.steps.cucumber_search_steps;
+package org.itacademy.onlinertest.steps.cucumber_steps;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,7 +22,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.ByteArrayInputStream;
 
-import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -33,18 +30,8 @@ public class СucumberSearchSteps {
 
     private CatalogPage catalogPage = new CatalogPage();
 
-    @Before
-    public void before() {
-        log.info("BEFORE");
-        Config.getProperties();
-        Configuration.browserSize = "1920x1080";
-        Configuration.browser = CHROME;
-        /** https://github.com/selenide/selenide/issues/1268 def 30 sec. for mobile connection 90 000 msec */
-        Configuration.pageLoadTimeout = 90000;
-    }
-
     @Given("I am on the main page")
-    public void openpage() {
+    public void openPage() {
         log.info("GIVEN I am on the main page");
         log.info("OPEN " + Config.getHomePage());
         open(Config.getHomePage());
@@ -65,7 +52,6 @@ public class СucumberSearchSteps {
         WaitUtils.waitForVisibility(frame);
         Assert.assertTrue(frame.isDisplayed());
         getWebDriver().switchTo().frame(frame);
-
         CheapestSteps.searchResultsElements = catalogPage.searchResults;
         WaitUtils.waitForVisibility(CheapestSteps.searchResultsElements.get(0));
     }

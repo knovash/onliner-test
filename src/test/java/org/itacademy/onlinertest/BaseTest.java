@@ -21,9 +21,12 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters({"startType", "browser", "version"})
-    public void start(String startType,
-                      @Optional("browser") String browser,
-                      @Optional("version") String version) {
+    public void beforeClass(String startType,
+                            @Optional("browser") String browser,
+                            @Optional("version") String version) {
+        log.info("STARTTYPE: " + startType);
+        log.info("BROWSER: " + browser);
+        log.info("VERSION:" + version);
         log.info("BEFORE CLASS config get properties");
         Config.getProperties();
 
@@ -78,7 +81,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void afterMethod() {
         Selenide.clearBrowserCookies();
     }
 }

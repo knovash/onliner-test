@@ -1,4 +1,4 @@
-Feature: Search feature
+Feature: Feature - Check search results
 
   Scenario Outline: Search for product
     Given I am on the main page
