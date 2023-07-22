@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Browsers.CHROME;
 @Log4j2
 @CucumberOptions(
         features = {"src/main/java/org/itacademy/onlinertest/features/Search.feature"},
-        glue = {"org.itacademy.onlinertest.steps.cucumber_search_steps"},
+        glue = {"org.itacademy.onlinertest.steps.cucumber_steps"},
         plugin = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 )
 public class CucumberRunnerTest extends AbstractTestNGCucumberTests {
