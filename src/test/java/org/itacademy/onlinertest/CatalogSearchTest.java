@@ -23,9 +23,9 @@ public class CatalogSearchTest extends BaseTest {
     public void checkSearchResultsTest(CatalogItem item) {
         log.info("TEST SEARCH START");
         log.info("ITEM: " + item.getName());
-        cheapestSteps.inputSearchValue(item.getName());
-        cheapestSteps.switchToResultsFrame();
-        cheapestSteps.getSearchResults();
+        searchSteps.inputSearchValue(item.getName());
+        searchSteps.switchToResultsFrame();
+        searchSteps.getSearchResults();
         searchSteps.checkItemInResults(item.getName()).assertAll();
     }
 }
