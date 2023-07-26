@@ -4,18 +4,20 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.OrderItem;
 import org.itacademy.onlinertest.pages.OrderPage;
+import org.itacademy.onlinertest.utils.AllureListener;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.testng.asserts.SoftAssert;
 
 @Log4j2
-public class OrderSteps {
+public class OrderSteps extends BaseSteps{
 
-    private OrderPage orderPage = new OrderPage();
+    private final OrderPage orderPage = new OrderPage();
 
     @Step("clickFirstOffer")
     public void clickFirstOffer() {
         log.info("clickFirstOffer");
         WaitUtils.waitForVisibility(orderPage.firstOffer);
+        AllureListener.screenShot();
         orderPage.firstOffer.scrollIntoView(false);
         log.info("DISP: " + orderPage.firstOffer.isDisplayed());
         orderPage.firstOffer.click();
@@ -27,6 +29,7 @@ public class OrderSteps {
         WaitUtils.waitForVisibility(orderPage.buyNow);
         orderPage.buyNow.scrollIntoView(false);
         log.info("DISP: " + orderPage.buyNow.isDisplayed());
+        AllureListener.screenShot();
         orderPage.buyNow.click();
     }
 
@@ -34,6 +37,7 @@ public class OrderSteps {
     public void fillForm(OrderItem order) {
         log.info("check item in results");
         WaitUtils.waitForVisibility(orderPage.street);
+        AllureListener.screenShot();
         orderPage.street.click();
         log.info("CLEAR " + orderPage.clearStreet.isDisplayed());
         if (orderPage.clearStreet.isDisplayed()) {

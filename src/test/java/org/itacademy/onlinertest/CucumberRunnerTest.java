@@ -2,38 +2,39 @@ package org.itacademy.onlinertest;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
-import io.qameta.allure.selenide.LogType;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.utils.Config;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 
 import static com.codeborne.selenide.Browsers.CHROME;
 
 @Log4j2
-public class BaseTest {
+@CucumberOptions(
+        features = {"src/main/java/org/itacademy/onlinertest/features/Search.feature"},
+        glue = {"org.itacademy.onlinertest.steps.cucumber_steps"},
+        plugin = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+)
+public class CucumberRunnerTest extends AbstractTestNGCucumberTests {
 
     @BeforeClass
     @Parameters({"startType", "browser", "version"})
     public void beforeClass(String startType,
                             @Optional("browser") String browser,
                             @Optional("version") String version) {
-        log.info("START TYPE: " + startType);
+        log.info("STARTTYPE: " + startType);
         log.info("BROWSER: " + browser);
         log.info("VERSION:" + version);
         log.info("BEFORE CLASS config get properties");
         Config.getProperties();
-
-        SelenideLogger.addListener("allure", new AllureSelenide()
-                .screenshots(true)
-                .savePageSource(true)
-                .enableLogs(LogType.BROWSER, Level.ALL));
 
         Configuration.browserSize = "1920x1080";
         /** https://github.com/selenide/selenide/issues/1268 def 30 sec. for mobile connection 90 000 msec */
@@ -65,12 +66,6 @@ public class BaseTest {
         capabilities.setVersion(version);
         capabilities.setCapability("selenoid:options", options);
         Configuration.browserCapabilities = capabilities;
-    }
-
-    @BeforeMethod
-    public void beforeMethod() {
-        log.info("BEFORE METHOD open home page: " + Config.getHomePage());
-        Selenide.open(Config.getHomePage());
     }
 
     @AfterMethod

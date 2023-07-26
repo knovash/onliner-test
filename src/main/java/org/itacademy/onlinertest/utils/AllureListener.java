@@ -11,24 +11,24 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class AllureListener implements ITestListener {
 
     @Attachment(value = "{0}", type = "text/plain")
-    public static String saveTextLog(String message) {
+    public static String textLog(String message) {
         return message;
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshot() {
+    public static byte[] screenShot() {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        saveScreenshot();
-        saveTextLog(result.getMethod().getConstructorOrMethod().getName() + "Success ScreenShot saved");
+        screenShot();
+        textLog(result.getMethod().getConstructorOrMethod().getName() + "Success ScreenShot saved");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        saveScreenshot();
-        saveTextLog(result.getMethod().getConstructorOrMethod().getName() + "Fail ScreenShot saved");
+        screenShot();
+        textLog(result.getMethod().getConstructorOrMethod().getName() + "Fail ScreenShot saved");
     }
 }

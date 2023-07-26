@@ -14,7 +14,7 @@ public class CatalogFilterTest extends BaseTest {
 
     private FilterSteps filterSteps = new FilterSteps();
 
-    @Description("Сheck that the filter results contain the desired product")
+    @Description("Сheck that the filter results contains the desired product")
     @Test(testName = "Filter results test",
             dataProvider = "filterItems",
             dataProviderClass = DataProviderFilterItems.class)
