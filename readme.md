@@ -26,10 +26,10 @@ to run test 1 in a local Chrome browser:
 mvn clean test -Dsuite=src/test/resources/local_test_1.xml
 ```
 
-to run tests in a Docker Selenoid browser
+to run test 1 in a Docker Selenoid browser:
 ```
 mvn clean test -Dsuite=src/test/resources/docker_test_1.xml
 ```
-
+(before that, you need to install https://aerokube.com/cm/latest/ and start the Selenoid on http://localhost:4444/)
 
 
