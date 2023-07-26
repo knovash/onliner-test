@@ -5,7 +5,6 @@ import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.OrderItem;
 import org.itacademy.onlinertest.steps.OrderSteps;
 import org.itacademy.onlinertest.utils.DataProviderOrderItems;
-import org.itacademy.onlinertest.utils.WaitUtils;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -26,6 +25,5 @@ public class CatalogOrderFormTest extends BaseTest {
         orderSteps.clickBuyNow();
         orderSteps.fillForm(order);
         orderSteps.checkForm(order).assertAll();
-        WaitUtils.waitForVisibility(2);
     }
 }

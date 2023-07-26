@@ -10,7 +10,7 @@
         <listener class-name="org.itacademy.onlinertest.utils.AllureListener"></listener>
     </listeners>
 
-    <test name="Test 4. Check fill order form">
+    <test name="Test 4. Check the filling of the order form fields">
         <classes>
             <class name="org.itacademy.onlinertest.CatalogOrderFormTest"/>
         </classes>
