@@ -12,16 +12,30 @@ TestNG 7.8.0
 Selenide 6.15.0
 Allure 2.22.1       
 Cucumber 7.13.0
+
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
+## General info
+This project is simple Lorem ipsum dolor generator.
+	
+## Technologies
+Project is created with:
+* Lorem version: 12.3
+* Ipsum version: 2.33
+* Ament library version: 999
         
 ## Launch:
 to run default test:
 in project dir run 
-```java
-mvn clean test
+```
+$ mvn clean test
 ```
 
 to run tests in a local Chrome browser:
-```bash
+```
 mvn clean test
 ```
 mvn clean test -Dsuite=src/test/resources/local_test_1.xml (run test 1)
