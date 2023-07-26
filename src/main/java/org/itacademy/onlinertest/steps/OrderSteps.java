@@ -27,9 +27,9 @@ public class OrderSteps extends BaseSteps{
     public void clickBuyNow() {
         log.info("clickBuyNow");
         WaitUtils.waitForVisibility(orderPage.buyNow);
-        AllureListener.screenShot();
         orderPage.buyNow.scrollIntoView(false);
         log.info("DISP: " + orderPage.buyNow.isDisplayed());
+        AllureListener.screenShot();
         orderPage.buyNow.click();
     }
 

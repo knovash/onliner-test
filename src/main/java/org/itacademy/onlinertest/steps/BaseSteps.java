@@ -21,7 +21,6 @@ public class BaseSteps {
         log.info("Input search value: " + value);
         WaitUtils.waitForVisibility(catalogPage.fastSearchInput, 60);
         catalogPage.fastSearchInput.setValue(value);
-        AllureListener.screenShot();
     }
 
     @Step("switch to results frame")
