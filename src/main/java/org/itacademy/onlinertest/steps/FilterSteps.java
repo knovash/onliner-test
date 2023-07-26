@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class FilterSteps {
 
-    private FilterPage filterPage = new FilterPage();
+    private final FilterPage filterPage = new FilterPage();
     public static ElementsCollection filterResultElements;
 
     @Step("button catalog click")

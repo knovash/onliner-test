@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 @Log4j2
 public class OrderSteps {
 
-    private OrderPage orderPage = new OrderPage();
+    private final OrderPage orderPage = new OrderPage();
 
     @Step("clickFirstOffer")
     public void clickFirstOffer() {

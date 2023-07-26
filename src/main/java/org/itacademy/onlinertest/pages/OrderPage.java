@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class OrderPage {
 
+    // TODO исправить выбор первого товара, не кликать на prime товары
     public SelenideElement firstOffer = $(By.xpath("//div[@class='catalog-offers__title']//a[contains(@href,'catalog')]"));
     public SelenideElement buyNow = $(By.xpath("//a[contains(@href,'https://cart.onliner.by') and contains(text(), 'сейчас')]"));
     public SelenideElement street = $(By.xpath("//div[@class='cart-form__label-title' and contains(text(), 'Улица')]/../../../following-sibling::div//input"));

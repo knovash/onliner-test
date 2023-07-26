@@ -20,7 +20,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @Log4j2
 public class CheapestSteps {
 
-    private CatalogPage catalogPage = new CatalogPage();
+    private final CatalogPage catalogPage = new CatalogPage();
     public static ElementsCollection searchResultsElements;
     public SelenideElement cheapestProductElement;
     public CatalogItem cheapestProduct = new CatalogItem();
@@ -62,10 +62,7 @@ public class CheapestSteps {
         cheapestProductElement = searchResultsElements.asDynamicIterable().stream()
                 .filter(element -> ElementUtils.getDouble(element) > 0)
                 .min(priceComparator)
-                .get();
-
-
-
+                .orElse(null);
     }
 
     @Step("set cheapest product object")

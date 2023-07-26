@@ -1,6 +1,5 @@
 package org.itacademy.onlinertest;
 
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import lombok.extern.log4j.Log4j2;
 import org.itacademy.onlinertest.models.OrderItem;
@@ -16,7 +15,7 @@ public class CatalogOrderFormTest extends BaseTest {
 
     private OrderSteps orderSteps = new OrderSteps();
 
-    @Description("Check that the order form fields are filled")
+    @Description("Сheck that the form fields are filled in correctly")
     @Test(testName = "Order form test",
             dataProvider = "orderItems",
             dataProviderClass = DataProviderOrderItems.class)
