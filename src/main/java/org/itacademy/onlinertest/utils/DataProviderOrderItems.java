@@ -18,8 +18,8 @@ public class DataProviderOrderItems {
         ArrayList<OrderItem> list;
         Class clazz = OrderItem.class;
 
-        String jsonData = JsonUtils.getJsonFromFile(path, fileName);
-        list = JsonUtils.getListFromJson(jsonData, clazz);
+        String jsonData = JsonGenericUtils.getJsonFromFile(path, fileName);
+        list = JsonGenericUtils.getListFromJson(jsonData, clazz);
         Object[][] data = Objects.requireNonNull(list).stream()
                 .map(d -> new Object[]{d})
                 .toArray(Object[][]::new);

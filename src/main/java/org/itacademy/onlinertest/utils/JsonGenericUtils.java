@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Log4j2
-public class JsonUtils {
+public class JsonGenericUtils {
 
 
     public static String getJsonFromFile(String path, String fileName) {
         String jsonData = null;
-        URL resourceItems = JsonUtils.class.getClassLoader().getResource(path + fileName);
+        URL resourceItems = JsonGenericUtils.class.getClassLoader().getResource(path + fileName);
         File jsonFile = new File(Objects.requireNonNull(resourceItems).getFile());
         log.info("JSON FILE: " + jsonFile);
         try {
@@ -51,7 +51,7 @@ public class JsonUtils {
 
     public static <T> T getObjectFromFile(String fileName, Class<T> clazz) {
         log.info("filename: " + fileName + " class: " + clazz);
-        URL resourceItems = JsonUtils.class.getClassLoader().getResource("data/" + fileName);
+        URL resourceItems = JsonGenericUtils.class.getClassLoader().getResource("data/" + fileName);
         File fileItems = new File(Objects.requireNonNull(resourceItems).getFile());
         ObjectMapper objectMapper = new ObjectMapper();
         T object;
