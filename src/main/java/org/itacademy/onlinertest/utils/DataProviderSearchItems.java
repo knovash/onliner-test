@@ -13,8 +13,8 @@ public class DataProviderSearchItems {
     @DataProvider
     public Object[][] searchItems() {
         log.info("DATA PROVIDER searchItems");
-        String path = "data/";
-        String fileName = "search_items.json";
+        String path = Config.getPathToData();
+        String fileName = Config.getDataFileNameSearch();
         ArrayList<CatalogItem> list;
         Class clazz = CatalogItem.class;
 

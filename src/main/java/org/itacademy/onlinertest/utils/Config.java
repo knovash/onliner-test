@@ -13,10 +13,11 @@ import java.util.Properties;
 public class Config {
 
     private static String homePage;
-    private static String dataFileCheapest;
-    private static String dataFileSearch;
-    private static String dataFileFilter;
-    private static String dataFileOrder;
+    private static String dataFileNameCheapest;
+    private static String dataFileNameSearch;
+    private static String dataFileNameFilter;
+    private static String dataFileNameOrder;
+    private static String pathToData;
 
     public static void getProperties() {
         log.info("CONFIG GET PROPERTIES");
@@ -28,15 +29,17 @@ public class Config {
             properties.load(in);
             in.close();
             homePage = properties.getProperty("homePage");
-            dataFileCheapest = properties.getProperty("dataFileCheapest");
-            dataFileSearch = properties.getProperty("dataFileSearch");
-            dataFileFilter = properties.getProperty("dataFileFilter");
-            dataFileOrder = properties.getProperty("dataFileOrder");
+            dataFileNameCheapest = properties.getProperty("dataFileNameCheapest");
+            dataFileNameSearch = properties.getProperty("dataFileNameSearch");
+            dataFileNameFilter = properties.getProperty("dataFileFilter");
+            dataFileNameOrder = properties.getProperty("dataFileNameOrder");
+            pathToData = properties.getProperty("pathToData");
             log.info("homePage: " + homePage);
-            log.info("dataFileCheapest: " + dataFileCheapest);
-            log.info("dataFileSearch: " + dataFileSearch);
-            log.info("dataFileFilter: " + dataFileFilter);
-            log.info("dataFileOrder: " + dataFileOrder);
+            log.info("dataFileNameCheapest: " + dataFileNameCheapest);
+            log.info("dataFileNameSearch: " + dataFileNameSearch);
+            log.info("dataFileNameFilter: " + dataFileNameFilter);
+            log.info("dataFileNameOrder: " + dataFileNameOrder);
+            log.info("pathToData: " + pathToData);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -46,19 +49,23 @@ public class Config {
         return homePage;
     }
 
-    public static String getDataFileCheapest() {
-        return dataFileCheapest;
+    public static String getDataFileNameCheapest() {
+        return dataFileNameCheapest;
     }
 
-    public static String getDataFileSearch() {
-        return dataFileSearch;
+    public static String getDataFileNameSearch() {
+        return dataFileNameSearch;
     }
 
-    public static String getDataFileFilter() {
-        return dataFileFilter;
+    public static String getDataFileNameFilter() {
+        return dataFileNameFilter;
     }
 
-    public static String getDataFileOrder() {
-        return dataFileOrder;
+    public static String getDataFileNameOrder() {
+        return dataFileNameOrder;
+    }
+
+    public static String getPathToData() {
+        return pathToData;
     }
 }

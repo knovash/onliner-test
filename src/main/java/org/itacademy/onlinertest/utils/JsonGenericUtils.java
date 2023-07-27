@@ -18,7 +18,6 @@ import java.util.Objects;
 @Log4j2
 public class JsonGenericUtils {
 
-
     public static String getJsonFromFile(String path, String fileName) {
         String jsonData = null;
         URL resourceItems = JsonGenericUtils.class.getClassLoader().getResource(path + fileName);
@@ -49,21 +48,6 @@ public class JsonGenericUtils {
         return (ArrayList<T>) list;
     }
 
-    public static <T> T getObjectFromFile(String fileName, Class<T> clazz) {
-        log.info("filename: " + fileName + " class: " + clazz);
-        URL resourceItems = JsonGenericUtils.class.getClassLoader().getResource("data/" + fileName);
-        File fileItems = new File(Objects.requireNonNull(resourceItems).getFile());
-        ObjectMapper objectMapper = new ObjectMapper();
-        T object;
-        try {
-            object = objectMapper.readValue(fileItems, clazz);
-        } catch (
-                IOException e) {
-            throw new RuntimeException(e);
-        }
-        return object;
-    }
-
     public static void setObjectToFile(Object object, String fileName) {
         File file = new File("src/main/resources/data/" + fileName);
         try {
@@ -75,6 +59,4 @@ public class JsonGenericUtils {
             throw new RuntimeException(e);
         }
     }
-
-
 }

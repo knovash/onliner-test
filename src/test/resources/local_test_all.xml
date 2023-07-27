@@ -32,4 +32,10 @@
         </classes>
     </test>
 
+    <test name="Test 5. Check search results. Cucumber">
+        <classes>
+            <class name="org.itacademy.onlinertest.CucumberRunnerTest"/>
+        </classes>
+    </test>
+
 </suite>

@@ -13,8 +13,8 @@ public class DataProviderOrderItems {
     @DataProvider
     public Object[][] orderItems() {
         log.info("DATA PROVIDER orderItems");
-        String path = "data/";
-        String fileName = "order_items.json";
+        String path = Config.getPathToData();
+        String fileName = Config.getDataFileNameOrder();
         ArrayList<OrderItem> list;
         Class clazz = OrderItem.class;
 

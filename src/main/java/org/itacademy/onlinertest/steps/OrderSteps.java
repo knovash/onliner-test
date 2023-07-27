@@ -8,6 +8,8 @@ import org.itacademy.onlinertest.utils.AllureListener;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.testng.asserts.SoftAssert;
 
+import static com.codeborne.selenide.Selenide.zoom;
+
 @Log4j2
 public class OrderSteps extends BaseSteps{
 
@@ -36,6 +38,7 @@ public class OrderSteps extends BaseSteps{
     @Step("check item in results")
     public void fillForm(OrderItem order) {
         log.info("check item in results");
+        zoom(0.5);
         WaitUtils.waitForVisibility(orderPage.street);
         AllureListener.screenShot();
         orderPage.street.click();
