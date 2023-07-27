@@ -106,8 +106,7 @@ public class FilterSteps extends BaseSteps{
         SoftAssert sa = new SoftAssert();
         Assert.assertFalse(FilterSteps.filterResultElements.isEmpty(), "RESULT LIST IS EMPTY");
         FilterSteps.filterResultElements.asDynamicIterable().stream()
-//                .peek(element -> log.info("TITLE " + element.$(By.xpath(".//div[@class='schema-product__title']")).getText()))
-//                .peek(element -> log.info("PRICE " + element.$(By.xpath(".//div[@class='schema-product__price']")).getText()))
+                .peek(element -> log.info("TITLE " + element.$(By.xpath(".//div[@class='schema-product__title']")).getText()))
                 .map(element -> element.$(By.xpath(".//div[@class='schema-product__title']")).getText())
                 .forEach(element -> sa.assertTrue(element.toLowerCase().contains(brand.toLowerCase()), "NOT CONTAINS"));
         return sa;

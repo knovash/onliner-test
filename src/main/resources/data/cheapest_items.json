@@ -1,8 +1,8 @@
-{
-  "items" : [ {
-    "name" : "ATLANT СМА 40М"
+[
+  {
+    "name": "ATLANT СМА 40М"
   },
-    {
-      "name" : "iphone se"
-    }]
-}
+  {
+    "name": "iphone se"
+  }
+]
