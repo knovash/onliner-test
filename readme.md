@@ -25,11 +25,22 @@ to run test 1 in a local Chrome browser:
 ```
 mvn clean test -Dsuite=src/test/resources/local_test_1.xml
 ```
-
+to run all tests in a local Chrome browser:
+```
+mvn clean test -Dsuite=src/test/resources/local_test_all.xml
+```
 to run test 1 in a Docker Selenoid browser:
 ```
 mvn clean test -Dsuite=src/test/resources/docker_test_1.xml
 ```
+to run all tests in a Docker Selenoid browser:
+```
+mvn clean test -Dsuite=src/test/resources/docker_test_all.xml
+```
 (before that, you need to install https://aerokube.com/cm/latest/ and start the Selenoid on http://localhost:4444/)
 
+to view the Allure report:
+```
+allure serve $(pwd)/target/allure-results
+```
 
