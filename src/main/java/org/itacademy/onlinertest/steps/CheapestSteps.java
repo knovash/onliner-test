@@ -7,7 +7,7 @@ import org.itacademy.onlinertest.models.CatalogItem;
 import org.itacademy.onlinertest.pages.CatalogPage;
 import org.itacademy.onlinertest.utils.AllureListener;
 import org.itacademy.onlinertest.utils.ElementUtils;
-import org.itacademy.onlinertest.utils.JsonUtils;
+import org.itacademy.onlinertest.utils.JsonGenericUtils;
 import org.itacademy.onlinertest.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -117,6 +117,6 @@ public class CheapestSteps extends BaseSteps{
     public void writeToFileCheapestProductObject() {
         log.info("write to file cheapest product object");
         //TODO просто потестировать запись объектов в файл
-        JsonUtils.setObjectToFile(cheapestProduct, "result.json");
+        JsonGenericUtils.setObjectToFile(cheapestProduct, "result.json");
     }
 }

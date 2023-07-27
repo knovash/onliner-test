@@ -1,7 +1,8 @@
-{
-  "items" : [ {
-    "name" : "iphone 12"
-  }, {
-    "name" : "playstation"
-  }]
-}
+[
+  {
+    "name": "iphone 12"
+  },
+  {
+    "name": "playstation"
+  }
+]

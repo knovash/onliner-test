@@ -1,25 +1,28 @@
 package org.itacademy.onlinertest.utils;
 
 import lombok.extern.log4j.Log4j2;
-import org.itacademy.onlinertest.models.Catalog;
 import org.itacademy.onlinertest.models.CatalogItem;
 import org.testng.annotations.DataProvider;
 
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Objects;
 
 @Log4j2
 public class DataProviderSearchItems {
 
     @DataProvider
     public Object[][] searchItems() {
-        Catalog object = JsonUtils.getObjectFromFile(Config.getDataFileSearch(), Catalog.class);
-        List<CatalogItem> list = object.getItems();
-        int size = list.size();
-        Object[][] data = new Object[size][1];
-        IntStream.range(0, size)
-                .peek(i -> log.info("DATAPROVIDER ["+ i +"] "+ list.get(i)))
-                .forEach(i -> data[i][0] = list.get(i));
+        log.info("DATA PROVIDER searchItems");
+        String path = Config.getPathToData();
+        String fileName = Config.getDataFileNameSearch();
+        ArrayList<CatalogItem> list;
+        Class clazz = CatalogItem.class;
+
+        String jsonData = JsonGenericUtils.getJsonFromFile(path, fileName);
+        list = JsonGenericUtils.getListFromJson(jsonData, clazz);
+        Object[][] data = Objects.requireNonNull(list).stream()
+                .map(d -> new Object[]{d})
+                .toArray(Object[][]::new);
         return data;
     }
 }
